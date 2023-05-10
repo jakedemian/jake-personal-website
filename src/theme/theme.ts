@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ThemeConfig, extendTheme } from '@chakra-ui/react';
 
 const config: ThemeConfig = {
