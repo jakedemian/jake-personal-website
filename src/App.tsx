@@ -1,7 +1,7 @@
-import React from "react";
-import { Route, Routes } from "react-router-dom";
+import React from 'react';
+import { Route, Routes } from 'react-router-dom';
 
-import Home from "src/Home";
+import Home from 'src/Home';
 
 function App() {
   return (

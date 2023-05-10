@@ -1,11 +1,18 @@
-import React from "react";
+import { Box, Switch, Text, useColorMode } from '@chakra-ui/react';
+import React from 'react';
 
 const Home: React.FC = () => {
+  const { colorMode, toggleColorMode } = useColorMode();
+
   return (
     <>
-      <div style={{ backgroundColor: "#000", flex: 1, height: "100vh" }}>
-        <p style={{ color: "white" }}>it is an app</p>
-      </div>
+      <Box bgColor="dark.background" w="100%" h="100vh">
+        <Text>It is an app!</Text>
+        <Switch
+          isChecked={colorMode === 'dark'}
+          onChange={() => toggleColorMode()}
+        ></Switch>
+      </Box>
     </>
   );
 };
