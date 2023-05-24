@@ -27,3 +27,6 @@ jobs:
 
       - name: Run TypeScript
         run: yarn tsc --noEmit
+
+      - name: Run Tests
+        run: yarn test

@@ -7,7 +7,7 @@ const Home: React.FC = () => {
   return (
     <>
       <Box bgColor="dark.background" w="100%" h="100vh">
-        <Text>It is an app!</Text>
+        <Text>It is an app</Text>
         <Switch
           isChecked={colorMode === 'dark'}
           onChange={() => toggleColorMode()}
