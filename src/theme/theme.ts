@@ -19,11 +19,12 @@ const theme = extendTheme({
   config,
   styles,
   colors: {
+    primary: '#6f51f5',
     dark: {
       brand: {
         //100: "#ff0000",
       },
-      bg: '#1A202C',
+      bg: '#141414',
       text: '#F7FAFC',
     },
     light: {
