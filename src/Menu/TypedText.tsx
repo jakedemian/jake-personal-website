@@ -35,7 +35,7 @@ const TypedText: React.FC<{ children: string }> = ({ children }) => {
   }, [currentText, cursorShown]);
   return (
     <>
-      <Text>
+      <Text fontWeight={600} fontSize={24}>
         {currentText}
         <Cursor isShown={cursorShown} />
       </Text>
