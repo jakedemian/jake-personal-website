@@ -1,0 +1,30 @@
+{
+  "autorun": false,
+  "terminals": [
+    {
+      "name": "Git",
+      "focus": true,
+      "icon": "git-branch",
+      "color": "terminal.ansiMagenta",
+      "shellPath": "/bin/bash"
+    },
+    {
+      "name": "React",
+      "focus": false,
+      "icon": "layout-sidebar-left-off",
+      "color": "terminal.ansiBlue",
+      "execute": false,
+      "command": "yarn start",
+      "shellPath": "/bin/bash"
+    },
+    {
+      "name": "Tests",
+      "focus": false,
+      "icon": "pass",
+      "color": "terminal.ansiGreen",
+      "execute": false,
+      "command": "yarn test",
+      "shellPath": "/bin/bash"
+    }
+  ]
+}

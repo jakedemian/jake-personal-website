@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@chakra-ui/anatomy": "^2.1.1",
+    "@chakra-ui/icons": "^2.0.19",
     "@chakra-ui/react": "^2.6.1",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
@@ -15,6 +17,7 @@
     "@types/react-dom": "^18.0.0",
     "framer-motion": "^6",
     "react": "^18.2.0",
+    "react-device-detect": "^2.2.3",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.11.1",
     "react-scripts": "5.0.1",
