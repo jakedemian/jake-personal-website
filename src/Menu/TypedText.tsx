@@ -2,7 +2,7 @@ import { Box, Text } from '@chakra-ui/layout';
 import React, { useEffect, useState } from 'react';
 
 const Cursor: React.FC<{ isShown: boolean }> = ({ isShown }) => (
-  <Box as="span" color={isShown ? 'primary' : 'transparent'}>
+  <Box as="span" color={isShown ? 'primary.500' : 'transparent'}>
     _
   </Box>
 );
