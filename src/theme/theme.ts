@@ -19,6 +19,7 @@ const theme = extendTheme({
   config,
   styles,
   colors: {
+    primary: '#6f51f5',
     dark: {
       brand: {
         //100: "#ff0000",
