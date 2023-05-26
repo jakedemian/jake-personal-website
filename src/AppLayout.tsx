@@ -9,6 +9,7 @@ import {
 import React from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { SunIcon, MoonIcon } from '@chakra-ui/icons';
+import { AnimatePresence } from 'framer-motion';
 
 import MenuButton from 'src/Menu/MenuButton';
 import TypedText from 'src/Menu/TypedText';
@@ -25,7 +26,7 @@ const AppLayout: React.FC = () => {
       bgColor="dark.background"
       w="100%"
       h="100vh"
-      overflow="hidden"
+      overflowY={{ base: 'scroll', lg: 'hidden' }}
     >
       <HStack justifyContent="flex-end" p={2}>
         <SunIcon />
@@ -45,6 +46,7 @@ const AppLayout: React.FC = () => {
           flex={[1, null]}
           margin="auto"
           p={{ base: 0, lg: 8 }}
+          gap={{ base: 2, lg: 16 }}
         >
           <VStack p={4}>
             <TypedText>Jake Demian</TypedText>
@@ -80,7 +82,9 @@ const AppLayout: React.FC = () => {
               </MenuButton>
             </Flex>
           </VStack>
-          <Outlet />
+          <AnimatePresence exitBeforeEnter>
+            <Outlet />
+          </AnimatePresence>
         </Grid>
       </VStack>
     </Flex>
