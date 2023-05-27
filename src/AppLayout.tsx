@@ -1,4 +1,5 @@
 import {
+  Box,
   Flex,
   Grid,
   HStack,
@@ -14,6 +15,7 @@ import { AnimatePresence } from 'framer-motion';
 import MenuButton from 'src/Menu/MenuButton';
 import TypedText from 'src/Menu/TypedText';
 import { ROUTES } from 'src/common/Routes';
+import Footer from 'src/components/Footer';
 
 const AppLayout: React.FC = () => {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -25,8 +27,8 @@ const AppLayout: React.FC = () => {
       flexDir="column"
       bgColor="dark.background"
       w="100%"
-      h="100vh"
-      overflowY={{ base: 'scroll', lg: 'hidden' }}
+      minH="100vh"
+      overflow="hidden"
     >
       <HStack justifyContent="flex-end" p={2}>
         <SunIcon />
@@ -42,8 +44,8 @@ const AppLayout: React.FC = () => {
           templateColumns={{ base: '1fr', lg: '25% 75%' }}
           templateRows={{ base: '15% 85%', lg: '1fr' }}
           w={{ base: '100%', lg: 900 }}
-          height={800}
-          flex={[1, null]}
+          // height={800}
+          // flex={[1, null]}
           margin="auto"
           p={{ base: 0, lg: 8 }}
           gap={{ base: 2, lg: 16 }}
@@ -86,6 +88,8 @@ const AppLayout: React.FC = () => {
             <Outlet />
           </AnimatePresence>
         </Grid>
+        <Box h="32" /> {/* Add a box or spacer here as needed */}
+        <Footer />
       </VStack>
     </Flex>
   );
