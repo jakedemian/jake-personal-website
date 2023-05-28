@@ -13,7 +13,6 @@ import { useNavigate } from 'react-router-dom';
 
 const snappyOneLiners = [
   'All rights ignored. Go ahead and steal it.',
-  'If you find a bug, submit a PR.',
   "If you're reading this: Why?",
   "I wasn't harmed (much) in making this website.",
   'Passed (almost) every unit test.',
