@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Text, useColorMode, Icon } from '@chakra-ui/react';
+import { Box, Text, useColorMode, Icon, VStack } from '@chakra-ui/react';
 import { FaHeart } from 'react-icons/fa';
 import { isMobile } from 'react-device-detect';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -34,6 +34,7 @@ const AboutImage: React.FC = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
+      // TODO this could use some optimization
       setHearts(prevHearts =>
         prevHearts
           .map(heart => ({ ...heart, opacity: heart.opacity - 0.01 }))
@@ -42,6 +43,15 @@ const AboutImage: React.FC = () => {
     }, 10);
     return () => clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    if (isMobile && opacity > 0) {
+      console.log('here');
+      setTimeout(() => {
+        setOpacity(0);
+      }, 300);
+    }
+  }, [opacity, isMobile]);
 
   return (
     <Box position="relative">
@@ -80,9 +90,8 @@ const AboutImage: React.FC = () => {
           cursor="pointer"
           onMouseEnter={() => setOpacity(0.9)}
           onMouseLeave={() => setOpacity(0)}
-          onMouseUp={() => isMobile && setOpacity(0)}
           onMouseDown={() => {
-            isMobile && setOpacity(0);
+            isMobile && setOpacity(0.9);
             setHoverText(getRandomTextNoRepeat());
             setHearts(prevHearts => [
               ...prevHearts,
@@ -92,19 +101,11 @@ const AboutImage: React.FC = () => {
           opacity={opacity}
           transition="opacity 0.2s"
         >
-          <Box height="100%" position="relative">
-            <Text
-              fontSize={48}
-              fontWeight={700}
-              userSelect="none"
-              position="absolute"
-              left="50%"
-              top="50%"
-              transform="translate(-50%, -50%)"
-            >
+          <VStack height="100%" justifyContent="center">
+            <Text fontSize={48} fontWeight={700} userSelect="none">
               {hoverText}
             </Text>
-          </Box>
+          </VStack>
         </Box>
       </Box>
       {hearts.map(heart => (
