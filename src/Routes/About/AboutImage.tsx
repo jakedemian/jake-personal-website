@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Text, VStack, useColorMode, Icon } from '@chakra-ui/react';
+import { Box, Text, useColorMode, Icon } from '@chakra-ui/react';
 import { FaHeart } from 'react-icons/fa';
 import { isMobile } from 'react-device-detect';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -82,6 +82,7 @@ const AboutImage: React.FC = () => {
           onMouseLeave={() => setOpacity(0)}
           onMouseUp={() => isMobile && setOpacity(0)}
           onMouseDown={() => {
+            isMobile && setOpacity(0);
             setHoverText(getRandomTextNoRepeat());
             setHearts(prevHearts => [
               ...prevHearts,
@@ -107,7 +108,13 @@ const AboutImage: React.FC = () => {
         </Box>
       </Box>
       {hearts.map(heart => (
-        <AnimatePresence key={heart.id}>
+        <AnimatePresence
+          key={heart.id}
+          exitBeforeEnter
+          onExitComplete={() =>
+            setHearts(hearts.filter(h => h.id !== heart.id))
+          }
+        >
           <motion.div
             initial="initial"
             animate="animate"
