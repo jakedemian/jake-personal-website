@@ -102,7 +102,12 @@ const AboutImage: React.FC = () => {
           transition="opacity 0.2s"
         >
           <VStack height="100%" justifyContent="center">
-            <Text fontSize={48} fontWeight={700} userSelect="none">
+            <Text
+              fontSize={48}
+              color="white"
+              fontWeight={700}
+              userSelect="none"
+            >
               {hoverText}
             </Text>
           </VStack>
@@ -129,7 +134,12 @@ const AboutImage: React.FC = () => {
               transform: 'translate(-80%)',
             }}
           >
-            <Icon as={FaHeart} w={16} h={16} color="white" />
+            <Icon
+              as={FaHeart}
+              w={16}
+              h={16}
+              color={isDark ? 'white' : 'primary.300'}
+            />
           </motion.div>
         </AnimatePresence>
       ))}
