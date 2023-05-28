@@ -19,7 +19,7 @@ const JsonSection: React.FC = () => {
   }, []);
 
   return (
-    <Box fontSize={12}>
+    <Box fontSize={12} lineHeight={1.4}>
       <pre>
         {` 
 {
@@ -48,7 +48,7 @@ const JsonSection: React.FC = () => {
   ],
   "numOfTimesWatchedSuperbad": 38,
 `}
-        {`  "approxNumOfSandwichesEaten": ${Math.floor(exactAge) * 365}
+        {`  "approxNumOfSandwichesEaten": ${Math.floor(exactAge * 365)}
 }
 `}
       </pre>
