@@ -104,7 +104,7 @@ const AboutImage: React.FC = () => {
           <VStack height="100%" justifyContent="center">
             <Text
               fontSize={48}
-              color="white"
+              color="dark.text"
               fontWeight={700}
               userSelect="none"
             >
