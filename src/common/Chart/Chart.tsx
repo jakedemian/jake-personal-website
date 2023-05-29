@@ -20,11 +20,31 @@ const Chart: React.FC = () => {
       <VStack position="relative" w={dynamicWidth} ml={{ base: -10, lg: 0 }}>
         <Grid templateColumns="repeat(1, 1fr)" gap={1} w={'100%'}>
           <ChartRow label="Languages" isGroupLabel />
-          <ChartRow label="TypeScript" value={95} />
-          <ChartRow label="Java" value={30} />
-          <ChartRow label="Python" value={50} />
-          <ChartRow isGroupLabel label="" />
+          <ChartRow label="TypeScript" value={100} />
+          <ChartRow label="C#" value={75} />
+          <ChartRow label="Java" value={50} />
+          <ChartRow label="Python" value={30} />
+          <ChartRow blank />
+          {/*  */}
           <ChartRow isGroupLabel label="Frameworks" />
+          <ChartRow label="React" value={100} />
+          <ChartRow blank />
+          {/*  */}
+          <ChartRow isGroupLabel label="Mobile" />
+          <ChartRow label="React Native" value={90} />
+          <ChartRow label="Ionic" value={90} />
+          <ChartRow blank />
+          {/*  */}
+          <ChartRow isGroupLabel label="Data" />
+          <ChartRow label="PostgreSQL" value={90} />
+          <ChartRow label="Redis" value={90} />
+          <ChartRow label="GraphQL" value={90} />
+          <ChartRow blank />
+          {/*  */}
+          <ChartRow isGroupLabel label="Cloud" />
+          <ChartRow label="AWS" value={80} />
+          <ChartRow label="GCP" value={80} />
+          <ChartRow label="Azure" value={50} />
         </Grid>
         <Grid
           templateColumns="25% 75%"
