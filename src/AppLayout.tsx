@@ -42,10 +42,8 @@ const AppLayout: React.FC = () => {
       <VStack flex={1} justifyContent="center">
         <Grid
           templateColumns={{ base: '1fr', lg: '25% 75%' }}
-          templateRows={{ base: '15% 85%', lg: '1fr' }}
+          templateRows={{ base: '150px 1fr', lg: '1fr' }}
           w={{ base: '100%', lg: 900 }}
-          // height={800}
-          // flex={[1, null]}
           margin="auto"
           p={{ base: 0, lg: 8 }}
           gap={{ base: 2, lg: 16 }}
@@ -84,9 +82,11 @@ const AppLayout: React.FC = () => {
               </MenuButton>
             </Flex>
           </VStack>
-          <AnimatePresence exitBeforeEnter>
-            <Outlet />
-          </AnimatePresence>
+          <Box>
+            <AnimatePresence exitBeforeEnter>
+              <Outlet />
+            </AnimatePresence>
+          </Box>
         </Grid>
         <Box h="32" /> {/* Add a box or spacer here as needed */}
         <Footer />

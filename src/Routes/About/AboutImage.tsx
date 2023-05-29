@@ -80,6 +80,7 @@ const AboutImage: React.FC = () => {
           backgroundPosition="center"
           backgroundRepeat="no-repeat"
         />
+        {/* TODO check if I can make this no-select or something on mobile so it doesnt highlight blue when you tap it */}
         <Box
           id="click-box"
           position="absolute"
