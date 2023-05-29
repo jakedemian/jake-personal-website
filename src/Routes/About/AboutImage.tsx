@@ -1,10 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Text, useColorMode, Icon, VStack } from '@chakra-ui/react';
-import { FaHeart } from 'react-icons/fa';
+import { FaHeart, FaBaby } from 'react-icons/fa';
+import { GiBabyBottle } from 'react-icons/gi';
 import { isMobile } from 'react-device-detect';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const textOptions = ['Cute!', '<3', '👶'];
+const textOptions = [
+  'Cute!',
+  '<3',
+  <FaBaby key={'fa-baby'} />,
+  'Baby',
+  <GiBabyBottle key="gi-baby-bottle" />,
+  'Aww!',
+  ':)',
+];
 const heartMotionVariants = {
   initial: { y: 0, opacity: 1, scale: 0.5 },
   animate: { y: -150, opacity: 0, scale: 1 },
@@ -15,11 +24,11 @@ const AboutImage: React.FC = () => {
   const colorMode = useColorMode();
   const isDark = colorMode.colorMode === 'dark';
 
-  const getRandomText = (): string => {
+  const getRandomText = () => {
     return textOptions[Math.floor(Math.random() * textOptions.length)];
   };
 
-  const getRandomTextNoRepeat = (): string => {
+  const getRandomTextNoRepeat = () => {
     let text = getRandomText();
     if (text === hoverText) {
       const index = textOptions.findIndex(t => t === text);
@@ -29,7 +38,9 @@ const AboutImage: React.FC = () => {
   };
 
   const [opacity, setOpacity] = useState<number>(0);
-  const [hoverText, setHoverText] = useState<string>(getRandomText());
+  const [hoverText, setHoverText] = useState<string | React.ReactNode>(
+    getRandomText()
+  );
   const [hearts, setHearts] = useState<{ id: number; opacity: number }[]>([]);
 
   useEffect(() => {
@@ -89,6 +100,16 @@ const AboutImage: React.FC = () => {
           height="175"
           bgColor="primary.500"
           cursor="pointer"
+          userSelect="none"
+          _active={{
+            outline: 'none',
+          }}
+          _focus={{
+            outline: 'none',
+          }}
+          sx={{
+            WebkitTapHighlightColor: 'transparent',
+          }}
           onMouseEnter={() => setOpacity(0.9)}
           onMouseLeave={() => setOpacity(0)}
           onMouseDown={() => {
