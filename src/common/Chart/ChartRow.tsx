@@ -28,7 +28,7 @@ const ChartRow: React.FC<{
               whiteSpace="nowrap"
               fontWeight={isGroupLabel ? 700 : 400}
               fontSize={
-                isGroupLabel ? { base: 11, lg: 18 } : { base: 9, lg: 15 }
+                isGroupLabel ? { base: 11, lg: 18 } : { base: 10, lg: 15 }
               }
             >
               {label}
