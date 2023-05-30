@@ -46,7 +46,7 @@ const AppLayout: React.FC = () => {
           w={{ base: '100%', lg: 900 }}
           margin="auto"
           p={{ base: 0, lg: 8 }}
-          gap={{ base: 2, lg: 16 }}
+          gap={{ base: 2, lg: 8 }}
         >
           <VStack p={4}>
             <TypedText>Jake Demian</TypedText>

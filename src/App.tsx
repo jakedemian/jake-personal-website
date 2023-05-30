@@ -3,7 +3,6 @@ import { Route, Routes } from 'react-router-dom';
 
 import AppLayout from 'src/AppLayout';
 import { ROUTES } from 'src/common/Routes';
-import { useFaviconBlink } from 'src/hooks/useFaviconBlink';
 import About from 'src/Routes/About';
 import Contact from 'src/Routes/Contact';
 import Experience from 'src/Routes/Experience';

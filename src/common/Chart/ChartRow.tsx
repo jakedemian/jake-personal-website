@@ -6,25 +6,28 @@ const ChartRow: React.FC<{
   value?: number;
   isGroupLabel?: boolean;
   blank?: boolean;
-}> = ({ label, value, isGroupLabel, blank }) => {
-  const ROW_HEIGHT = { base: 3, lg: 5 };
+  animationDelay?: number;
+}> = ({ label, value, isGroupLabel, blank, animationDelay }) => {
+  const ROW_HEIGHT = { base: 3, lg: 4 };
   const TRANSITION_TIME = 0.5;
   const [barWidth, setBarWidth] = useState<number>(0);
 
   useEffect(() => {
     if (!value) return;
 
-    setBarWidth(value);
+    setTimeout(() => setBarWidth(value), animationDelay || 0);
   }, [value]);
 
   return (
-    <GridItem h={ROW_HEIGHT}>
+    <GridItem h={ROW_HEIGHT} mb={isGroupLabel ? 2 : 0}>
       {!blank && (
         <HStack>
           <Box w="25%" textAlign="right" pr={2} mr={-2}>
             <Text
               fontWeight={isGroupLabel ? 700 : 400}
-              fontSize={{ base: 9, lg: 15 }}
+              fontSize={
+                isGroupLabel ? { base: 11, lg: 18 } : { base: 9, lg: 15 }
+              }
             >
               {label}
             </Text>
