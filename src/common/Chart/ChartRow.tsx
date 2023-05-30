@@ -1,13 +1,21 @@
 import { Box, GridItem, HStack, Text } from '@chakra-ui/react';
-import React, { useEffect, useState } from 'react';
+import React, { HTMLAttributes, useEffect, useState } from 'react';
 
-const ChartRow: React.FC<{
+interface ChartRowProps extends HTMLAttributes<HTMLElement> {
   label?: string;
   value?: number;
   isGroupLabel?: boolean;
   blank?: boolean;
   animationDelay?: number;
-}> = ({ label, value, isGroupLabel, blank, animationDelay }) => {
+}
+const ChartRow: React.FC<ChartRowProps> = ({
+  label,
+  value,
+  isGroupLabel,
+  blank,
+  animationDelay,
+  ...restProps
+}) => {
   const ROW_HEIGHT = { base: 3, lg: 3.5 };
   const TRANSITION_TIME = 0.25;
   const [barWidth, setBarWidth] = useState<number>(0);
@@ -19,7 +27,7 @@ const ChartRow: React.FC<{
   }, [value]);
 
   return (
-    <GridItem h={ROW_HEIGHT} mb={isGroupLabel ? 2 : 0}>
+    <GridItem h={ROW_HEIGHT} mb={isGroupLabel ? 2 : 0} {...restProps}>
       {!blank && (
         <HStack>
           <Box w="20%" textAlign="right" pr={2} mr={-2}>

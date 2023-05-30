@@ -18,7 +18,7 @@ const Chart: React.FC = () => {
   };
 
   return (
-    <HStack mt={16} justifyContent={{ base: 'center', lg: 'flex-start' }}>
+    <HStack justifyContent={{ base: 'center', lg: 'flex-start' }}>
       <VStack
         position="relative"
         w={{ base: '75%', lg: '100%' }}
@@ -28,11 +28,11 @@ const Chart: React.FC = () => {
           <ChartRow blank />
 
           {data.map((group, groupIndex) => (
-            <>
+            <React.Fragment key={group.category}>
               <ChartRow
+                data-testid="group-label"
                 label={group.category}
                 isGroupLabel
-                key={group.category}
               />
 
               {Object.keys(group.items)
@@ -43,10 +43,13 @@ const Chart: React.FC = () => {
                     label={item}
                     value={group.items[item]}
                     animationDelay={calculateDelay(groupIndex, itemIndex)}
+                    data-testid="chart-row"
                   />
                 ))}
-              {groupIndex !== data.length - 1 && <ChartRow blank />}
-            </>
+              {groupIndex !== data.length - 1 && (
+                <ChartRow blank data-testid="blank-row" />
+              )}
+            </React.Fragment>
           ))}
         </Grid>
         <ChartAxisLines />
