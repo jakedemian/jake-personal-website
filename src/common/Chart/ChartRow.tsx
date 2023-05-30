@@ -8,8 +8,8 @@ const ChartRow: React.FC<{
   blank?: boolean;
   animationDelay?: number;
 }> = ({ label, value, isGroupLabel, blank, animationDelay }) => {
-  const ROW_HEIGHT = { base: 3, lg: 4 };
-  const TRANSITION_TIME = 0.5;
+  const ROW_HEIGHT = { base: 3, lg: 3.5 };
+  const TRANSITION_TIME = 0.25;
   const [barWidth, setBarWidth] = useState<number>(0);
 
   useEffect(() => {

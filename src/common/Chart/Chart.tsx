@@ -7,7 +7,7 @@ import ChartAxisLines from 'src/common/Chart/ChartAxisLines';
 import { data } from 'src/common/Chart/data';
 
 const Chart: React.FC = () => {
-  const DELAY_MILLISECONDS = 35;
+  const DELAY_MILLISECONDS = 40;
   const calculateDelay = (groupIndex: number, itemIndex: number): number => {
     let totalIndex = 0;
     for (let i = 0; i < groupIndex; i++) {
@@ -26,6 +26,7 @@ const Chart: React.FC = () => {
       >
         <Grid templateColumns="repeat(1, 1fr)" gap={1} w={'100%'}>
           <ChartRow blank />
+
           {data.map((group, groupIndex) => (
             <>
               <ChartRow
@@ -33,14 +34,17 @@ const Chart: React.FC = () => {
                 isGroupLabel
                 key={group.category}
               />
-              {Object.keys(group.items).map((item, itemIndex) => (
-                <ChartRow
-                  key={item}
-                  label={item}
-                  value={group.items[item]}
-                  animationDelay={calculateDelay(groupIndex, itemIndex)}
-                />
-              ))}
+
+              {Object.keys(group.items)
+                .sort((a, b) => group.items[b] - group.items[a])
+                .map((item, itemIndex) => (
+                  <ChartRow
+                    key={item}
+                    label={item}
+                    value={group.items[item]}
+                    animationDelay={calculateDelay(groupIndex, itemIndex)}
+                  />
+                ))}
               {groupIndex !== data.length - 1 && <ChartRow blank />}
             </>
           ))}
