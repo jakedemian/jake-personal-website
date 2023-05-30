@@ -1,12 +1,14 @@
 import React from 'react';
-import { Grid, HStack, VStack } from '@chakra-ui/react';
+import { Grid, HStack, Text, VStack } from '@chakra-ui/react';
 
 import ChartRow from 'src/common/Chart/ChartRow';
 import ChartAxisLabels from 'src/common/Chart/ChartAxisLabels';
 import ChartAxisLines from 'src/common/Chart/ChartAxisLines';
 import { data } from 'src/common/Chart/data';
+import { useIsDark } from 'src/hooks/useIsDark';
 
 const Chart: React.FC = () => {
+  const { isLight } = useIsDark();
   const DELAY_MILLISECONDS = 40;
   const calculateDelay = (groupIndex: number, itemIndex: number): number => {
     let totalIndex = 0;
@@ -19,41 +21,61 @@ const Chart: React.FC = () => {
 
   return (
     <HStack justifyContent={{ base: 'center', lg: 'flex-start' }}>
-      <VStack
-        position="relative"
-        w={{ base: '75%', lg: '100%' }}
-        ml={{ base: -10, lg: 0 }}
-      >
-        <Grid templateColumns="repeat(1, 1fr)" gap={1} w={'100%'}>
-          <ChartRow blank />
+      <VStack w="100%" ml={{ base: -10, lg: 0 }}>
+        <VStack position="relative" w={{ base: '75%', lg: '100%' }}>
+          <Grid templateColumns="repeat(1, 1fr)" gap={1} w={'100%'}>
+            <ChartRow blank />
 
-          {data.map((group, groupIndex) => (
-            <React.Fragment key={group.category}>
-              <ChartRow
-                data-testid="group-label"
-                label={group.category}
-                isGroupLabel
-              />
+            {data.map((group, groupIndex) => (
+              <React.Fragment key={group.category}>
+                <ChartRow
+                  data-testid="group-label"
+                  label={group.category}
+                  isGroupLabel
+                />
 
-              {Object.keys(group.items)
-                .sort((a, b) => group.items[b] - group.items[a])
-                .map((item, itemIndex) => (
-                  <ChartRow
-                    key={item}
-                    label={item}
-                    value={group.items[item]}
-                    animationDelay={calculateDelay(groupIndex, itemIndex)}
-                    data-testid="chart-row"
-                  />
-                ))}
-              {groupIndex !== data.length - 1 && (
-                <ChartRow blank data-testid="blank-row" />
-              )}
-            </React.Fragment>
-          ))}
-        </Grid>
-        <ChartAxisLines />
-        <ChartAxisLabels />
+                {Object.keys(group.items)
+                  .sort((a, b) => group.items[b].value - group.items[a].value)
+                  .map((item, itemIndex) => {
+                    const Icon = group.items[item].icon;
+                    const lightStyles = isLight
+                      ? {
+                          backgroundColor: group.items[item]?.lightBgColor,
+                          color: group.items[item]?.lightColor,
+                        }
+                      : {};
+
+                    return (
+                      <ChartRow
+                        key={item}
+                        label={item}
+                        value={group.items[item].value}
+                        animationDelay={calculateDelay(groupIndex, itemIndex)}
+                        data-testid="chart-row"
+                        icon={
+                          <Icon
+                            size={14}
+                            color={group.items[item].color}
+                            style={{ minWidth: '14px', ...lightStyles }}
+                          />
+                        }
+                      />
+                    );
+                  })}
+                {groupIndex !== data.length - 1 && (
+                  <ChartRow blank data-testid="blank-row" />
+                )}
+              </React.Fragment>
+            ))}
+          </Grid>
+          <ChartAxisLines />
+          <ChartAxisLabels />
+        </VStack>
+        <HStack justifyContent="flex-start" width="80%">
+          <Text mt={8} fontSize={12}>
+            * Actively learning this
+          </Text>
+        </HStack>
       </VStack>
     </HStack>
   );

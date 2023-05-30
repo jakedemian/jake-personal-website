@@ -19,8 +19,8 @@ const JsonSection: React.FC = () => {
   }, []);
 
   return (
-    <Box fontSize={12} lineHeight={1.4}>
-      <pre>
+    <Box fontSize={12} lineHeight={1.3}>
+      <pre style={{ fontFamily: 'Source Code Pro' }}>
         {` 
 {
   "name": "Jacob Demian",
@@ -34,9 +34,6 @@ const JsonSection: React.FC = () => {
     "cats": [
       "frank",
       "randy"
-    ],
-    "dogs": [
-     "vito"
     ]
   },
   "otherInterests": [

@@ -21,6 +21,10 @@ const theme = extendTheme({
   config,
   styles,
   colors: {
+    text: {
+      light: '#1A202C',
+      dark: '#F7FAFC',
+    },
     primary: {
       50: '#f1eefe',
       100: '#d4cbfc',
