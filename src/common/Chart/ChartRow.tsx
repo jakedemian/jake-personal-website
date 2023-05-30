@@ -19,14 +19,14 @@ const ChartRow: React.FC<{
   }, [value]);
 
   return (
-    <GridItem h={ROW_HEIGHT} mb={isGroupLabel ? 2 : 0}>
+    <GridItem h={ROW_HEIGHT} mb={isGroupLabel ? { base: 0, lg: 2 } : 0}>
       {!blank && (
         <HStack>
-          <Box w="25%" textAlign="right" pr={2} mr={-2}>
+          <Box w="20%" textAlign="right" pr={2} mr={-2}>
             <Text
               fontWeight={isGroupLabel ? 700 : 400}
               fontSize={
-                isGroupLabel ? { base: 11, lg: 18 } : { base: 9, lg: 15 }
+                isGroupLabel ? { base: 8, lg: 18 } : { base: 8, lg: 15 }
               }
             >
               {label}

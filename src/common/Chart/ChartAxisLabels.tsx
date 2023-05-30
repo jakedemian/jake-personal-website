@@ -10,7 +10,7 @@ const ChartAxisLabels: React.FC = () => {
       position="absolute"
       top={0}
       left={0}
-      templateColumns="25% 75%"
+      templateColumns="20% 80%"
       w={'100%'}
     >
       <Box />

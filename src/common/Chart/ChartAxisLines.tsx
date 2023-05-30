@@ -13,7 +13,7 @@ const ChartAxisLines: React.FC = () => {
 
   return (
     <Grid
-      templateColumns="25% 75%"
+      templateColumns="20% 80%"
       w={'100%'}
       h="100%"
       position="absolute"
