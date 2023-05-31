@@ -1,6 +1,8 @@
 import React, { HTMLAttributes, useEffect, useState } from 'react';
 import { Box, GridItem, HStack, Text } from '@chakra-ui/react';
 
+import ChartBar from 'src/common/Chart/ChartBar';
+
 interface ChartRowProps extends HTMLAttributes<HTMLElement> {
   label?: string;
   value?: number;
@@ -19,7 +21,6 @@ const ChartRow: React.FC<ChartRowProps> = ({
   ...restProps
 }) => {
   const ROW_HEIGHT = { base: 3, lg: 3.5 };
-  const TRANSITION_TIME = 0.25;
   const [barWidth, setBarWidth] = useState<number>(0);
 
   useEffect(() => {
@@ -52,14 +53,7 @@ const ChartRow: React.FC<ChartRowProps> = ({
             {icon || null}
           </HStack>
           <Box flex={1}>
-            {value && (
-              <Box
-                transition={`width ${TRANSITION_TIME}s`}
-                bgColor="primary.500"
-                w={`${barWidth}%`}
-                h={ROW_HEIGHT}
-              />
-            )}
+            {value && <ChartBar widthPercent={barWidth} height={ROW_HEIGHT} />}
           </Box>
         </HStack>
       )}

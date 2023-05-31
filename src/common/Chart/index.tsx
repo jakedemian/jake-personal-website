@@ -15,7 +15,7 @@ const Chart: React.FC = () => {
   const calculateDelay = (groupIndex: number, itemIndex: number): number => {
     let totalIndex = 0;
     for (let i = 0; i < groupIndex; i++) {
-      totalIndex += Object.keys(data[i].items).length; // Only count the actual items
+      totalIndex += Object.keys(data[i].items).length;
     }
     totalIndex += itemIndex;
     return totalIndex * DELAY_MILLISECONDS;
@@ -25,6 +25,7 @@ const Chart: React.FC = () => {
     <HStack
       justifyContent={{ base: 'center', lg: 'flex-start' }}
       ml={{ base: 12, lg: 0 }}
+      mr={{ base: 0, lg: 32 }}
     >
       <VStack w="100%" ml={{ base: -10, lg: 0 }}>
         <VStack position="relative" w={{ base: '75%', lg: '100%' }}>
