@@ -137,7 +137,7 @@ export const data: Category[] = [
         icon: Icons.SiGithub,
         color: 'text',
       },
-      'Github Actions': {
+      '*Github Actions': {
         value: 65,
         icon: Icons.SiGithubactions,
         color: 'text',

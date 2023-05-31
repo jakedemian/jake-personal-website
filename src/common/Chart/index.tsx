@@ -22,7 +22,10 @@ const Chart: React.FC = () => {
   };
 
   return (
-    <HStack justifyContent={{ base: 'center', lg: 'flex-start' }}>
+    <HStack
+      justifyContent={{ base: 'center', lg: 'flex-start' }}
+      ml={{ base: 12, lg: 0 }}
+    >
       <VStack w="100%" ml={{ base: -10, lg: 0 }}>
         <VStack position="relative" w={{ base: '75%', lg: '100%' }}>
           <Grid templateColumns="repeat(1, 1fr)" gap={1} w={'100%'}>
