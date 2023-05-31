@@ -83,7 +83,7 @@ const AboutImage: React.FC = () => {
           minWidth="175px"
           w="175px"
           height="175"
-          bgImage="/img/jake-and-son.jpg"
+          bgImage="/img/jake-and-son.webp"
           objectFit="cover"
           objectPosition="center"
           backgroundSize="140%"
