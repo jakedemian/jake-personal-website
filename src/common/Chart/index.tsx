@@ -7,6 +7,8 @@ import ChartAxisLines from 'src/common/Chart/ChartAxisLines';
 import { data } from 'src/common/Chart/data';
 import { useIsDark } from 'src/hooks/useIsDark';
 
+const COLORED_ICONS_ENABLED = false; // TODO make an env var
+
 const Chart: React.FC = () => {
   const { isLight } = useIsDark();
   const DELAY_MILLISECONDS = 40;
@@ -38,12 +40,13 @@ const Chart: React.FC = () => {
                   .sort((a, b) => group.items[b].value - group.items[a].value)
                   .map((item, itemIndex) => {
                     const Icon = group.items[item].icon;
-                    const lightStyles = isLight
-                      ? {
-                          backgroundColor: group.items[item]?.lightBgColor,
-                          color: group.items[item]?.lightColor,
-                        }
-                      : {};
+                    const lightStyles =
+                      isLight && COLORED_ICONS_ENABLED
+                        ? {
+                            backgroundColor: group.items[item]?.lightBgColor,
+                            color: group.items[item]?.lightColor,
+                          }
+                        : {};
 
                     return (
                       <ChartRow
@@ -55,7 +58,11 @@ const Chart: React.FC = () => {
                         icon={
                           <Icon
                             size={14}
-                            color={group.items[item].color}
+                            color={
+                              COLORED_ICONS_ENABLED
+                                ? group.items[item].color
+                                : 'text'
+                            }
                             style={{ minWidth: '14px', ...lightStyles }}
                           />
                         }
