@@ -14,7 +14,7 @@ describe('TypedText.tsx', () => {
         expect(textElement).toHaveTextContent('Test');
       },
       {
-        timeout: 7000, // wait up to 5 seconds
+        timeout: 7000,
       }
     );
   });

@@ -15,7 +15,7 @@ const Chart: React.FC = () => {
   const calculateDelay = (groupIndex: number, itemIndex: number): number => {
     let totalIndex = 0;
     for (let i = 0; i < groupIndex; i++) {
-      totalIndex += Object.keys(data[i].items).length; // Only count the actual items
+      totalIndex += Object.keys(data[i].items).length;
     }
     totalIndex += itemIndex;
     return totalIndex * DELAY_MILLISECONDS;
