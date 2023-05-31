@@ -25,6 +25,7 @@ const Chart: React.FC = () => {
     <HStack
       justifyContent={{ base: 'center', lg: 'flex-start' }}
       ml={{ base: 12, lg: 0 }}
+      mr={{ base: 0, lg: 32 }}
     >
       <VStack w="100%" ml={{ base: -10, lg: 0 }}>
         <VStack position="relative" w={{ base: '75%', lg: '100%' }}>
