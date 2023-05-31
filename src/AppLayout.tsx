@@ -11,6 +11,7 @@ import React from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { SunIcon, MoonIcon } from '@chakra-ui/icons';
 import { AnimatePresence } from 'framer-motion';
+import { isMobile } from 'react-device-detect';
 
 import MenuButton from 'src/Menu/MenuButton';
 import TypedText from 'src/Menu/TypedText';
@@ -23,13 +24,7 @@ const AppLayout: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <Flex
-      flexDir="column"
-      bgColor="dark.background"
-      w="100%"
-      minH="100vh"
-      overflow="hidden"
-    >
+    <Flex flexDir="column" w="100%" minH="100vh" overflow="hidden">
       <HStack justifyContent="flex-end" p={2}>
         <SunIcon />
         <Switch
@@ -88,7 +83,7 @@ const AppLayout: React.FC = () => {
             </AnimatePresence>
           </Box>
         </Grid>
-        <Box h="32" /> {/* Add a box or spacer here as needed */}
+        {isMobile && <Box h="8" />}
         <Footer />
       </VStack>
     </Flex>

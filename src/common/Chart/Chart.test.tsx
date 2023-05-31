@@ -4,29 +4,68 @@ import { screen } from '@testing-library/react';
 import Chart from 'src/common/Chart';
 import render from 'src/test/render';
 
-jest.mock('src/common/Chart/data', () => ({
-  __esModule: true,
-  data: [
-    {
-      category: 'Languages',
-      items: {
-        TypeScript: 100,
-        HTML: 100,
-        CSS: 85,
-        JavaScript: 100,
+jest.mock('src/common/Chart/data', () => {
+  const FakeIcon = () => <div />;
+
+  return {
+    __esModule: true,
+    data: [
+      {
+        category: 'Languages',
+        items: {
+          TypeScript: {
+            value: 100,
+            icon: FakeIcon,
+            color: '#007acc',
+          },
+          HTML: {
+            value: 100,
+            icon: FakeIcon,
+            color: '#e34f26',
+          },
+          CSS: {
+            value: 85,
+            icon: FakeIcon,
+            color: '#264de4',
+          },
+          JavaScript: {
+            value: 100,
+            icon: FakeIcon,
+            color: '#f7df1e',
+            lightBgColor: '#000',
+          },
+        },
       },
-    },
-    {
-      category: 'Frameworks',
-      items: {
-        React: 100,
-        'React Native': 90,
-        Expo: 65,
-        NestJS: 50,
+      {
+        category: 'Frameworks',
+        items: {
+          React: {
+            value: 100,
+            icon: FakeIcon,
+            color: '#61DBFB',
+            lightColor: '#4c768d',
+          },
+          'React Native': {
+            value: 90,
+            icon: FakeIcon,
+            color: '#61DBFB',
+            lightColor: '#4c768d',
+          },
+          Expo: {
+            value: 65,
+            icon: FakeIcon,
+            color: 'text',
+          },
+          '*NestJS': {
+            value: 50,
+            icon: FakeIcon,
+            color: '#E0234E',
+          },
+        },
       },
-    },
-  ],
-}));
+    ],
+  };
+});
 
 describe('Chart', () => {
   beforeEach(() => {

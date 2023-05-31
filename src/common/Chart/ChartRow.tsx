@@ -1,5 +1,5 @@
-import { Box, GridItem, HStack, Text } from '@chakra-ui/react';
 import React, { HTMLAttributes, useEffect, useState } from 'react';
+import { Box, GridItem, HStack, Text } from '@chakra-ui/react';
 
 interface ChartRowProps extends HTMLAttributes<HTMLElement> {
   label?: string;
@@ -7,6 +7,7 @@ interface ChartRowProps extends HTMLAttributes<HTMLElement> {
   isGroupLabel?: boolean;
   blank?: boolean;
   animationDelay?: number;
+  icon?: React.ReactNode;
 }
 const ChartRow: React.FC<ChartRowProps> = ({
   label,
@@ -14,6 +15,7 @@ const ChartRow: React.FC<ChartRowProps> = ({
   isGroupLabel,
   blank,
   animationDelay,
+  icon,
   ...restProps
 }) => {
   const ROW_HEIGHT = { base: 3, lg: 3.5 };
@@ -30,7 +32,13 @@ const ChartRow: React.FC<ChartRowProps> = ({
     <GridItem h={ROW_HEIGHT} mb={isGroupLabel ? 2 : 0} {...restProps}>
       {!blank && (
         <HStack>
-          <Box w="20%" textAlign="right" pr={2} mr={-2}>
+          <HStack
+            w="20%"
+            justifyContent="flex-end"
+            pr={2}
+            mr={-2}
+            overflowX="visible"
+          >
             <Text
               style={{ direction: 'rtl' }}
               whiteSpace="nowrap"
@@ -41,7 +49,8 @@ const ChartRow: React.FC<ChartRowProps> = ({
             >
               {label}
             </Text>
-          </Box>
+            {icon || null}
+          </HStack>
           <Box flex={1}>
             {value && (
               <Box

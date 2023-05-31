@@ -96,6 +96,13 @@
   font-style: italic;
 }
 
+@font-face {
+  font-family: 'Source Code Pro';
+  src: url('./fonts/SourceCodePro-Medium.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+}
+
 * {
   font-family: 'Montserrat';
 }
