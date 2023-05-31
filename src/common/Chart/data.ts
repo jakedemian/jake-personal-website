@@ -162,6 +162,11 @@ export const data: Category[] = [
         icon: Icons.SiYarn,
         color: '#2188b6',
       },
+      '*Vercel': {
+        value: 40,
+        icon: Icons.SiVercel,
+        color: 'text',
+      },
     },
   },
 ];
