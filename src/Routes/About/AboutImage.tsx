@@ -72,7 +72,6 @@ const AboutImage: React.FC = () => {
         minW={175}
         my={{ base: 8, lg: 0 }}
         position="relative"
-        bgColor="red.500"
         borderWidth={2}
         borderColor={isDark ? 'white' : 'gray.600'}
         borderStyle="solid"
