@@ -3,9 +3,9 @@ import { Box, Text, VStack } from '@chakra-ui/layout';
 import { motion } from 'framer-motion';
 
 const pageTransition = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 30 },
   enter: { opacity: 1, y: 0, transition: { duration: 0.2 } },
-  exit: { opacity: 0, y: -20, transition: { duration: 0.2 } },
+  exit: { opacity: 0, y: -30, transition: { duration: 0.2 } },
 };
 
 const Page: React.FC<{ title: string; children: React.ReactNode }> = ({
