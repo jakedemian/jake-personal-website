@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Box,
   Card,
+  Flex,
   Grid,
   HStack,
   IconButton,
@@ -47,27 +48,44 @@ const ProfessionalCard: React.FC<ProfessionalCardProps> = ({
 
   return (
     <Card width="100%" p={4} bgColor={isDark ? 'primary.700' : 'white'}>
-      <Grid templateColumns={{ base: '40% 60%', lg: '40% 60%' }}>
-        <VStack alignItems="center" justifyContent="center">
-          <Image
-            w="75%"
-            filter={isDark ? 'brightness(999%)' : 'brightness(0%)'}
-            src={logoPath}
-          />
-        </VStack>
+      <Flex flexDir={{ base: 'column', lg: 'row' }} gap={4}>
         <VStack alignItems="flex-start" gap={4}>
           <HStack justifyContent="space-between" w="100%">
-            <Box>
-              <Text fontSize={20} fontWeight={700} lineHeight={1.2}>
-                {companyName}
-              </Text>
-              <Text fontSize={13} lineHeight={1.2} fontStyle="italic">
-                {jobTitle}
-              </Text>
-              <Text fontSize={13} lineHeight={1.2} fontStyle="italic">
-                {`${timeframeStart} - ${timeframeEnd}`}
-              </Text>
-            </Box>
+            <Grid
+              w="100%"
+              templateColumns={{ base: '1fr', lg: '40% 60%' }}
+              templateRows={{ base: '40% 60%', lg: '1fr' }}
+              alignItems="center"
+              justifyContent={'flex-start'}
+            >
+              <Box
+                gridRow={{ base: 2, lg: 'auto' }}
+                margin={{ base: 'auto', lg: 'unset' }}
+              >
+                <Text fontSize={20} fontWeight={700} lineHeight={1.2}>
+                  {companyName}
+                </Text>
+                <Text fontSize={13} lineHeight={1.2} fontStyle="italic">
+                  {jobTitle}
+                </Text>
+                <Text fontSize={13} lineHeight={1.2} fontStyle="italic">
+                  {`${timeframeStart} - ${timeframeEnd}`}
+                </Text>
+              </Box>
+              <Box
+                maxW={200}
+                gridRow={{ base: 1, lg: 'auto' }}
+                margin={{ base: 'auto', lg: 'unset' }}
+              >
+                <Image
+                  filter={isDark ? 'brightness(999%)' : 'brightness(0%)'}
+                  src={logoPath}
+                  maxW="70%"
+                  maxH={35}
+                  margin={{ base: 'auto', lg: 'unset' }}
+                />
+              </Box>
+            </Grid>
             <Box>
               <IconButton
                 size={'sm'}
@@ -86,7 +104,7 @@ const ProfessionalCard: React.FC<ProfessionalCardProps> = ({
             <Text fontSize={14}>{jobDescription}</Text>
           </Box>
         </VStack>
-      </Grid>
+      </Flex>
     </Card>
   );
 };
