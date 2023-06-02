@@ -33,13 +33,13 @@ const Experience: React.FC = () => {
             </TabList>
           </HStack>
           <TabPanels
+            mt={2}
             overflowY={{ base: 'visible', lg: 'auto' }}
             h={{ base: 'auto', lg: 600 }}
             w="100%"
-            py={2}
           >
             <TabPanel p={{ base: 4, lg: 0 }}>
-              <VStack w="100%">
+              <VStack w="100%" pr={{ base: 0, lg: 2 }}>
                 <ProfessionalCard
                   {...{
                     logoPath: '/img/synapse-studios-logo.png',
@@ -75,13 +75,43 @@ const Experience: React.FC = () => {
                     logoPath: '/img/publicis-sapient-logo.png',
                     companyName: 'Publicis Sapient',
                     jobTitle: 'Software Developer',
-                    timeframeStart: '2015',
+                    timeframeStart: 'Spring 2015',
                     timeframeEnd: 'Winter 2019',
                     linkHref: 'https://www.publicissapient.com/',
                     linkAriaLabel: 'Publicis Sapient website link',
                     jobDescription:
                       'Publicis Sapient is an agency focused on providing software development services' +
                       ' to businesses.  I worked with clients such as Sherwin-Williams and Luxottica.',
+                  }}
+                />
+                <ProfessionalCard
+                  {...{
+                    logoPath: '/img/steris-logo.png',
+                    companyName: 'STERIS Corp.',
+                    jobTitle: 'Computer Engineering Intern',
+                    timeframeStart: 'Fall 2013',
+                    timeframeEnd: 'Fall 2014',
+                    linkHref: 'https://www.steris.com/',
+                    linkAriaLabel: 'STERIS website link',
+                    jobDescription:
+                      'I did two stints of internship at STERIS as a part of my University co-op ' +
+                      'program.  At STERIS I primarily helped develop a surgical lighting system, working ' +
+                      'with both desktop and embedded software + hardware on a daily basis.',
+                  }}
+                />
+                <ProfessionalCard
+                  {...{
+                    logoPath: '/img/nanotronics-logo.png',
+                    companyName: 'Nanotronics',
+                    jobTitle: 'Software Engineering Intern',
+                    timeframeStart: 'Winter 2013',
+                    timeframeEnd: 'Summer 2013',
+                    linkHref: 'https://www.nanotronics.co/',
+                    linkAriaLabel: 'Nanotronics website link',
+                    jobDescription:
+                      'My first internship through my University co-op program.  Nanotronics builds advanced' +
+                      ' silicon wafer processing machines.  I worked on the nSpec scanner, interfacing ' +
+                      'with both the hardware and software side.',
                   }}
                 />
               </VStack>
