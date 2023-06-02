@@ -17,7 +17,7 @@ const Contact: React.FC = () => {
           />
           <Text fontSize={24}>I&apos;m working on it!</Text>
         </VStack>
-      </VStack>{' '}
+      </VStack>
     </Page>
   );
 };

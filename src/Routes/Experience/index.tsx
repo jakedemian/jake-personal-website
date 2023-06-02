@@ -1,11 +1,13 @@
 import {
   HStack,
+  Image,
   Tab,
   TabList,
   TabPanel,
   TabPanels,
   Tabs,
   VStack,
+  Text,
 } from '@chakra-ui/react';
 import React from 'react';
 
@@ -16,6 +18,7 @@ const tabStyles = {
   _selected: { backgroundColor: 'primary.500', color: 'white' },
   _active: { backgroundColor: 'primary.500', color: 'white' },
   borderRadius: 2,
+  flex: 1,
 };
 
 const Experience: React.FC = () => {
@@ -24,7 +27,7 @@ const Experience: React.FC = () => {
       <VStack w="100%">
         <Tabs variant="soft-rounded" w="100%">
           <HStack justifyContent="center">
-            <TabList>
+            <TabList w="100%" mx={{ base: 4, lg: 0 }} gap={2}>
               <Tab {...tabStyles}>Professional</Tab>
               <Tab {...tabStyles}>Personal</Tab>
             </TabList>
@@ -33,8 +36,9 @@ const Experience: React.FC = () => {
             overflowY={{ base: 'visible', lg: 'auto' }}
             h={{ base: 'auto', lg: 600 }}
             w="100%"
+            py={2}
           >
-            <TabPanel>
+            <TabPanel p={{ base: 4, lg: 0 }}>
               <VStack w="100%">
                 <ProfessionalCard
                   {...{
@@ -68,8 +72,19 @@ const Experience: React.FC = () => {
                 />
               </VStack>
             </TabPanel>
-            <TabPanel>
-              <p>two!</p>
+            <TabPanel p={0}>
+              <VStack alignItems="center">
+                <VStack mt={8}>
+                  <Image
+                    color="dark.text"
+                    brightness={255}
+                    src="/img/bruce-almighty-jim-carrey.gif"
+                    w="65%"
+                    borderRadius={8}
+                  />
+                  <Text fontSize={24}>I&apos;m working on it!</Text>
+                </VStack>
+              </VStack>
             </TabPanel>
           </TabPanels>
         </Tabs>

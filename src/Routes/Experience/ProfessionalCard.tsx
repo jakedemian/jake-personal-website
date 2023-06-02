@@ -3,7 +3,6 @@ import {
   Box,
   Card,
   Flex,
-  Grid,
   HStack,
   IconButton,
   Image,
@@ -44,26 +43,27 @@ const ProfessionalCard: React.FC<ProfessionalCardProps> = ({
 }) => {
   const { isDark } = useIsDark();
 
-  // TODO for mobile, the logo and content should be vertically stacked
-
   return (
     <Card width="100%" p={4} bgColor={isDark ? 'primary.700' : 'white'}>
       <Flex flexDir={{ base: 'column', lg: 'row' }} gap={4}>
         <VStack alignItems="flex-start" gap={4}>
-          <HStack justifyContent="space-between" w="100%">
-            <Grid
-              w="100%"
-              templateColumns={{ base: '1fr', lg: '40% 60%' }}
-              templateRows={{ base: '40% 60%', lg: '1fr' }}
-              alignItems="center"
-              justifyContent={'flex-start'}
-            >
-              <Box
-                gridRow={{ base: 2, lg: 'auto' }}
-                margin={{ base: 'auto', lg: 'unset' }}
-              >
+          <HStack justifyContent="space-between" w="100%" position="relative">
+            <HStack gap={{ base: 0, lg: 8 }}>
+              <Box margin={{ base: 'auto', lg: 'unset' }} whiteSpace="nowrap">
                 <Text fontSize={20} fontWeight={700} lineHeight={1.2}>
                   {companyName}
+                  <IconButton
+                    size={'sm'}
+                    as={Link}
+                    aria-label={linkAriaLabel}
+                    href={linkHref}
+                    variant="ghost"
+                    target="_blank"
+                    color={isDark ? 'white' : 'primary.500'}
+                    icon={<ExternalLinkIcon />}
+                    ml={1}
+                    mt={-1}
+                  />
                 </Text>
                 <Text fontSize={13} lineHeight={1.2} fontStyle="italic">
                   {jobTitle}
@@ -72,11 +72,7 @@ const ProfessionalCard: React.FC<ProfessionalCardProps> = ({
                   {`${timeframeStart} - ${timeframeEnd}`}
                 </Text>
               </Box>
-              <Box
-                maxW={200}
-                gridRow={{ base: 1, lg: 'auto' }}
-                margin={{ base: 'auto', lg: 'unset' }}
-              >
+              <Box maxW={200} margin={{ base: 'auto', lg: 'unset' }}>
                 <Image
                   filter={isDark ? 'brightness(999%)' : 'brightness(0%)'}
                   src={logoPath}
@@ -85,19 +81,7 @@ const ProfessionalCard: React.FC<ProfessionalCardProps> = ({
                   margin={{ base: 'auto', lg: 'unset' }}
                 />
               </Box>
-            </Grid>
-            <Box>
-              <IconButton
-                size={'sm'}
-                as={Link}
-                aria-label={linkAriaLabel}
-                href={linkHref}
-                target="_blank"
-                bgColor={isDark ? 'white' : 'primary.500'}
-                color={isDark ? 'primary.500' : 'white'}
-                icon={<ExternalLinkIcon />}
-              />
-            </Box>
+            </HStack>
           </HStack>
 
           <Box>
