@@ -70,6 +70,20 @@ const Experience: React.FC = () => {
                       'refactored, redesigned, and maintained large portions of the health-street.net website.',
                   }}
                 />
+                <ProfessionalCard
+                  {...{
+                    logoPath: '/img/publicis-sapient-logo.png',
+                    companyName: 'Publicis Sapient',
+                    jobTitle: 'Software Developer',
+                    timeframeStart: '2015',
+                    timeframeEnd: 'Winter 2019',
+                    linkHref: 'https://www.publicissapient.com/',
+                    linkAriaLabel: 'Publicis Sapient website link',
+                    jobDescription:
+                      'Publicis Sapient is an agency focused on providing software development services' +
+                      ' to businesses.  I worked with clients such as Sherwin-Williams and Luxottica.',
+                  }}
+                />
               </VStack>
             </TabPanel>
             <TabPanel p={0}>
