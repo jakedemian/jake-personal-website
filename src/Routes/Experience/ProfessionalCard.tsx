@@ -44,8 +44,14 @@ const ProfessionalCard: React.FC<ProfessionalCardProps> = ({
   const { isDark } = useIsDark();
 
   return (
-    <Card width="100%" p={4} bgColor={isDark ? 'primary.700' : 'white'}>
-      <Flex flexDir={{ base: 'column', lg: 'row' }} gap={4}>
+    <Card
+      width="100%"
+      bgColor={isDark ? '#202020' : 'white'}
+      borderRadius={2}
+      overflow={'hidden'}
+    >
+      <Box h={2} w="100%" bgColor={'primary.500'} />
+      <Flex flexDir={{ base: 'column', lg: 'row' }} gap={4} p={4}>
         <VStack alignItems="flex-start" gap={4}>
           <HStack
             justifyContent={{ base: 'space-between', lg: 'flex-start' }}
@@ -63,7 +69,7 @@ const ProfessionalCard: React.FC<ProfessionalCardProps> = ({
                   href={linkHref}
                   variant="ghost"
                   target="_blank"
-                  color={isDark ? 'white' : 'primary.500'}
+                  color="primary.500"
                   icon={<ExternalLinkIcon />}
                   ml={1}
                   mt={-1}

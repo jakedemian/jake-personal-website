@@ -42,7 +42,7 @@ const theme = extendTheme({
       text: '#F7FAFC',
     },
     light: {
-      bg: '#F7FAFC',
+      bg: '#FAF9F6',
       text: '#1A202C',
     },
   },
