@@ -1,4 +1,5 @@
 import { Box, Text } from '@chakra-ui/layout';
+import { ResponsiveValue } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 
 const Cursor: React.FC<{ isShown: boolean }> = ({ isShown }) => (
@@ -7,7 +8,12 @@ const Cursor: React.FC<{ isShown: boolean }> = ({ isShown }) => (
   </Box>
 );
 
-const TypedText: React.FC<{ children: string }> = ({ children }) => {
+type TypedTextProps = {
+  children: string;
+  fontSize?: number | ResponsiveValue<number>;
+};
+
+const TypedText: React.FC<TypedTextProps> = ({ children, fontSize = 24 }) => {
   const [currentText, setCurrentText] = useState<string>('');
   const [cursorShown, setCursorShown] = useState(true);
   const endText: string = children;
@@ -35,7 +41,7 @@ const TypedText: React.FC<{ children: string }> = ({ children }) => {
   }, [currentText, cursorShown]);
   return (
     <>
-      <Text fontWeight={600} fontSize={24}>
+      <Text fontWeight={600} fontSize={fontSize}>
         {currentText}
         <Cursor isShown={cursorShown} />
       </Text>

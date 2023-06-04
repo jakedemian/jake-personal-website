@@ -16,7 +16,8 @@ import {
 import { ExternalLinkIcon } from '@chakra-ui/icons';
 
 import { useIsDark } from 'src/hooks/useIsDark';
-import Chip from 'src/Routes/Experience/Chip';
+import { Chip, ChipIconMap } from 'src/Routes/Experience/Chip';
+import { NonEmptyArray } from 'src/common/types';
 
 interface PathLogo {
   path: string;
@@ -29,11 +30,13 @@ interface ComponentLogo {
 }
 
 type PersonalCardProps = {
-  logo: PathLogo | ComponentLogo;
+  logo?: PathLogo | ComponentLogo;
   projectName: string;
   shortDescription: string;
   linkHref?: string;
   linkAriaLabel?: string;
+  chips: NonEmptyArray<keyof typeof ChipIconMap>;
+  githubLink: string;
 };
 
 const PersonalCard: React.FC<PersonalCardProps> = ({
@@ -42,6 +45,8 @@ const PersonalCard: React.FC<PersonalCardProps> = ({
   shortDescription,
   linkHref,
   linkAriaLabel,
+  chips,
+  githubLink,
 }) => {
   const { isDark } = useIsDark();
 
@@ -54,14 +59,14 @@ const PersonalCard: React.FC<PersonalCardProps> = ({
     >
       <Box h={2} w="100%" bgColor={'primary.500'} />
       <Flex flexDir={{ base: 'column', lg: 'row' }} gap={4} p={4}>
-        <VStack alignItems="flex-start" gap={4}>
+        <VStack alignItems="flex-start" gap={4} w="100%">
           <HStack
-            justifyContent={{ base: 'space-between', lg: 'flex-start' }}
+            justifyContent="space-between"
+            alignItems={{ base: 'center', lg: 'flex-start' }}
             w="100%"
-            position="relative"
             gap={{ base: 0, lg: 8 }}
           >
-            <Box whiteSpace="nowrap" w={{ base: 'auto', lg: '45%' }}>
+            <Box whiteSpace="nowrap" w={{ base: '50%', lg: '45%' }}>
               <Text fontSize={20} fontWeight={700} lineHeight={1.2}>
                 {projectName}
                 {linkHref && linkAriaLabel && (
@@ -88,41 +93,38 @@ const PersonalCard: React.FC<PersonalCardProps> = ({
                 {shortDescription}
               </Text>
             </Box>
-            <HStack flex={1} justifyContent="flex-end" pr={4}>
-              {logo.path && (
+            <HStack justifyContent="flex-end">
+              {logo?.path && (
                 <Image
-                  filter={isDark ? 'brightness(999%)' : 'brightness(0%)'}
                   src={logo.path}
                   maxW="70%"
                   maxH={65}
+                  filter={isDark ? 'brightness(9999%)' : 'brightness(0%)'}
                 />
               )}
-              {logo.component && <Box>{logo.component}</Box>}
+              {logo?.component && <Box>{logo.component}</Box>}
             </HStack>
           </HStack>
-          <VStack alignItems="flex-start">
+          <VStack alignItems="flex-start" w="100%">
             <Text ml={1} fontWeight={700}>
               Built Using
             </Text>
-            <Grid templateColumns="75% 25%">
+            <Grid templateColumns={{ base: '1fr', lg: '75% 25%' }} width="100%">
               <Wrap>
-                <Chip name="React" />
-                <Chip name="TypeScript" />
-                <Chip name="Node.js" />
-                <Chip name="Yarn" />
-                <Chip name="Git" />
-                <Chip name="Vercel" />
-                <Chip name="Jest" />
+                {chips.map(chipName => (
+                  <Chip name={chipName} key={chipName} />
+                ))}
               </Wrap>
               <VStack justifyContent="flex-end" alignItems="flex-end">
                 {/* TODO make this a new component? ExternalLink */}
                 <Button
                   as={Link}
-                  href="https://github.com/jakedemian/jake-personal-website"
+                  href={githubLink}
                   variant="link"
                   color="primary.500"
                   rightIcon={<ExternalLinkIcon />}
                   target="_blank"
+                  mt={4}
                 >
                   GitHub
                 </Button>

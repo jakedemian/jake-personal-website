@@ -1,11 +1,11 @@
 import React from 'react';
-import { Box, HStack, Text } from '@chakra-ui/react';
+import { HStack, Text } from '@chakra-ui/react';
 import * as Icons from 'react-icons/si';
 import { IconType } from 'react-icons';
 
 import { useIsDark } from 'src/hooks/useIsDark';
 
-const ChipIconMap = {
+export const ChipIconMap = {
   React: Icons.SiReact,
   TypeScript: Icons.SiTypescript,
   'Node.js': Icons.SiNodedotjs,
@@ -13,6 +13,19 @@ const ChipIconMap = {
   Git: Icons.SiGit,
   Vercel: Icons.SiVercel,
   Jest: Icons.SiJest,
+  Expo: Icons.SiExpo,
+  'React Native': Icons.SiReact,
+  Xcode: Icons.SiXcode,
+  'Android Studio': Icons.SiAndroidstudio,
+  'Chakra UI': Icons.SiChakraui,
+  Unity: Icons.SiUnity,
+  '.NET': Icons.SiDotnet,
+  Aseprite: Icons.SiAseprite,
+  npm: Icons.SiNpm,
+  JavaScript: Icons.SiJavascript,
+  'C#': Icons.SiCsharp,
+  HTML5: Icons.SiHtml5,
+  CSS3: Icons.SiCss3,
 };
 
 type ChipProps = {
@@ -20,7 +33,7 @@ type ChipProps = {
   size?: number;
 };
 
-const Chip: React.FC<ChipProps> = ({ name, size = 14 }) => {
+export const Chip: React.FC<ChipProps> = ({ name, size = 14 }) => {
   const Icon: IconType = ChipIconMap[name as keyof typeof ChipIconMap];
   const { isDark } = useIsDark();
 
@@ -38,5 +51,3 @@ const Chip: React.FC<ChipProps> = ({ name, size = 14 }) => {
     </HStack>
   );
 };
-
-export default Chip;
