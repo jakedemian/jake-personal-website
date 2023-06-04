@@ -34,12 +34,6 @@ const ProfessionalCard: React.FC<ProfessionalCardProps> = ({
   linkHref,
   linkAriaLabel,
   jobDescription,
-  /*
-  TODO
-  githubLink: string
-  githubAriaLabel: string
-  techChips: string[] or custom type
-  */
 }) => {
   const { isDark } = useIsDark();
 

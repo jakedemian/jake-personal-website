@@ -1,18 +1,18 @@
 import {
   HStack,
-  Image,
   Tab,
   TabList,
   TabPanel,
   TabPanels,
   Tabs,
   VStack,
-  Text,
 } from '@chakra-ui/react';
 import React from 'react';
 
 import Page from 'src/Routes/Page';
 import ProfessionalCard from 'src/Routes/Experience/ProfessionalCard';
+import PersonalCard from 'src/Routes/Experience/PersonalCard';
+import TypedText from 'src/Menu/TypedText';
 
 const tabStyles = {
   _selected: { backgroundColor: 'primary.500', color: 'white' },
@@ -116,18 +116,18 @@ const Experience: React.FC = () => {
                 />
               </VStack>
             </TabPanel>
-            <TabPanel p={0}>
-              <VStack alignItems="center">
-                <VStack mt={8}>
-                  <Image
-                    color="dark.text"
-                    brightness={255}
-                    src="/img/bruce-almighty-jim-carrey.gif"
-                    w="65%"
-                    borderRadius={8}
-                  />
-                  <Text fontSize={24}>I&apos;m working on it!</Text>
-                </VStack>
+            <TabPanel p={{ base: 4, lg: 0 }}>
+              <VStack w="100%" pr={{ base: 0, lg: 2 }}>
+                <PersonalCard
+                  {...{
+                    logo: { component: <TypedText>Jake Demian</TypedText> },
+                    projectName: 'jakedemian.dev',
+                    shortDescription:
+                      'The website you are perusing at this very moment!',
+                    linkHref: 'https://jakedemian.dev',
+                    linkAriaLabel: "jakedemian's personal website link",
+                  }}
+                />
               </VStack>
             </TabPanel>
           </TabPanels>
