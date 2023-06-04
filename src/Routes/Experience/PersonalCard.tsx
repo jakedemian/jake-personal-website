@@ -32,8 +32,8 @@ type PersonalCardProps = {
   logo: PathLogo | ComponentLogo;
   projectName: string;
   shortDescription: string;
-  linkHref: string;
-  linkAriaLabel: string;
+  linkHref?: string;
+  linkAriaLabel?: string;
 };
 
 const PersonalCard: React.FC<PersonalCardProps> = ({
@@ -64,18 +64,20 @@ const PersonalCard: React.FC<PersonalCardProps> = ({
             <Box whiteSpace="nowrap" w={{ base: 'auto', lg: '45%' }}>
               <Text fontSize={20} fontWeight={700} lineHeight={1.2}>
                 {projectName}
-                <IconButton
-                  size={'sm'}
-                  as={Link}
-                  aria-label={linkAriaLabel}
-                  href={linkHref}
-                  variant="ghost"
-                  target="_blank"
-                  color="primary.500"
-                  icon={<ExternalLinkIcon />}
-                  ml={1}
-                  mt={-1}
-                />
+                {linkHref && linkAriaLabel && (
+                  <IconButton
+                    size={'sm'}
+                    as={Link}
+                    aria-label={linkAriaLabel}
+                    href={linkHref}
+                    variant="ghost"
+                    target="_blank"
+                    color="primary.500"
+                    icon={<ExternalLinkIcon />}
+                    ml={1}
+                    mt={-1}
+                  />
+                )}
               </Text>
               <Text
                 fontSize={13}
@@ -98,30 +100,35 @@ const PersonalCard: React.FC<PersonalCardProps> = ({
               {logo.component && <Box>{logo.component}</Box>}
             </HStack>
           </HStack>
-          <Grid templateColumns="75% 25%">
-            <Wrap>
-              <Chip name="React" />
-              <Chip name="TypeScript" />
-              <Chip name="Node.js" />
-              <Chip name="Yarn" />
-              <Chip name="Git" />
-              <Chip name="Vercel" />
-              <Chip name="Jest" />
-            </Wrap>
-            <VStack justifyContent="flex-end" alignItems="flex-end">
-              {/* TODO make this a new component? ExternalLink */}
-              <Button
-                as={Link}
-                href="https://github.com/jakedemian/jake-personal-website"
-                variant="link"
-                color="primary.500"
-                rightIcon={<ExternalLinkIcon />}
-                target="_blank"
-              >
-                GitHub
-              </Button>
-            </VStack>
-          </Grid>
+          <VStack alignItems="flex-start">
+            <Text ml={1} fontWeight={700}>
+              Built Using
+            </Text>
+            <Grid templateColumns="75% 25%">
+              <Wrap>
+                <Chip name="React" />
+                <Chip name="TypeScript" />
+                <Chip name="Node.js" />
+                <Chip name="Yarn" />
+                <Chip name="Git" />
+                <Chip name="Vercel" />
+                <Chip name="Jest" />
+              </Wrap>
+              <VStack justifyContent="flex-end" alignItems="flex-end">
+                {/* TODO make this a new component? ExternalLink */}
+                <Button
+                  as={Link}
+                  href="https://github.com/jakedemian/jake-personal-website"
+                  variant="link"
+                  color="primary.500"
+                  rightIcon={<ExternalLinkIcon />}
+                  target="_blank"
+                >
+                  GitHub
+                </Button>
+              </VStack>
+            </Grid>
+          </VStack>
         </VStack>
       </Flex>
     </Card>

@@ -17,29 +17,24 @@ const ChipIconMap = {
 
 type ChipProps = {
   name: string;
+  size?: number;
 };
 
-const Chip: React.FC<ChipProps> = ({ name }) => {
+const Chip: React.FC<ChipProps> = ({ name, size = 14 }) => {
   const Icon: IconType = ChipIconMap[name as keyof typeof ChipIconMap];
   const { isDark } = useIsDark();
 
   return (
     <HStack
       bgColor={isDark ? 'background' : '#eee'}
-      // _hover={{
-      //   bgColor: 'primary.500',
-      //   color: 'white',
-      //   cursor: 'pointer',
-      //   userSelect: 'none',
-      // }}
       userSelect="none"
-      py={2}
-      px={4}
+      py={1}
+      px={3}
       borderRadius={999}
       alignItems="center"
     >
-      <Icon />
-      <Text>{name}</Text>
+      <Icon size={size} />
+      <Text fontSize={size}>{name}</Text>
     </HStack>
   );
 };
