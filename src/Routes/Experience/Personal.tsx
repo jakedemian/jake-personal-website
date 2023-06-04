@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, HStack, VStack } from '@chakra-ui/react';
+import { Box, VStack } from '@chakra-ui/react';
 import { GiBigDiamondRing } from 'react-icons/gi';
 import { FaRegCircle } from 'react-icons/fa';
 
