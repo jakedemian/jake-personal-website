@@ -22,9 +22,9 @@ const About: React.FC = () => {
             <Divider my={1} visibility="hidden" />
             <Text fontSize={14}>
               With almost a decade in the industry, I&apos;ve engineered
-              software solutions for dozens of projects. Now I&apos;m delving
-              into freelance, eager to offer my expertise to you! Big or small,
-              your tech challenges are my next adventures.
+              software solutions for dozens of projects. If you have a project
+              that needs an experienced full-stack developer, feel free to reach
+              out!
             </Text>
           </Box>
           <AboutImage />

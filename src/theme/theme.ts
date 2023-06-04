@@ -38,14 +38,11 @@ const theme = extendTheme({
       900: '#161031',
     },
     dark: {
-      brand: {
-        //100: "#ff0000",
-      },
       bg: '#141414',
       text: '#F7FAFC',
     },
     light: {
-      bg: '#F7FAFC',
+      bg: '#FAF9F6',
       text: '#1A202C',
     },
   },

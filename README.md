@@ -10,4 +10,4 @@ This project was developed entirely by Jake Demian. :)
 
 3. disconnect the device from usb
 
-4. `adb connect <your_device_ip> && adb reverse tcp:5001 tcp:5001 && adb reverse tcp:8080 tcp:8080 && adb reverse tcp:9099 tcp:9099`
+4. `adb connect <your_device_ip> && adb reverse tcp:3000 tcp:3000`

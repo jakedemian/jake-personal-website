@@ -22,6 +22,7 @@ const MenuButton: React.FC<MenuButtonProps & { isSelected?: boolean }> = ({
       w={{ base: 'auto', lg: '100%' }}
       color={isSelected ? 'white' : 'default'}
       bgColor={isSelected ? 'primary.500' : 'transparent'}
+      borderRadius={2}
       _hover={{
         bgColor:
           isMobile || isSelected ? 'primary.500' : desktopUnselectedHoverColor,
