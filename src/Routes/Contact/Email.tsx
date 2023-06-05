@@ -9,7 +9,7 @@ import {
   Tooltip,
 } from '@chakra-ui/react';
 import React, { useState } from 'react';
-import { FaQuestionCircle } from 'react-icons/fa';
+import { FaCheck, FaQuestionCircle } from 'react-icons/fa';
 import { HiOutlineMail } from 'react-icons/hi';
 
 type FormState = {
@@ -30,6 +30,7 @@ type FormError = {
 const Email: React.FC = () => {
   const [formState, setFormState] = useState<FormState>(defaultFormState);
   const [error, setError] = useState<FormError | null>(null);
+  const [complete, setComplete] = useState<boolean>(false);
 
   const FormErrorMessage = ({ children }: { children: string }) => {
     return (
@@ -64,22 +65,39 @@ const Email: React.FC = () => {
       });
     }
 
-    await fetch(
-      'https://jake-personal-website-jakedemian.vercel.app/api/send-email',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          to: 'jakedemian@gmail.com',
-          from: 'jakedemian@gmail.com',
-          subject: '👀 jakedemian.dev email form',
-          text: `From <${formState.email}>: ${formState.message}`,
-        }),
-      }
-    );
+    // TODO this only works in production at the moment, so I need
+    //to a) create a local vercel dev environment for testing this,
+    //I also need to mock the email sending, and finally I need to
+    //wrap this is something like react query instead of using a raw
+    //fetch
+    const response = await fetch('jakedemian.dev/api/send-email', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        to: 'jakedemian@gmail.com',
+        from: 'jakedemian@gmail.com',
+        subject: '👀 jakedemian.dev email form',
+        text: `From <${formState.email}>: ${formState.message}`,
+      }),
+    });
+
+    if (response.status === 200) {
+      setComplete(true);
+    }
   };
+
+  if (complete) {
+    return (
+      <HStack>
+        <Text>
+          Success! Thanks for reaching out, I&apos;ll get back to you soon!
+        </Text>
+        <Icon as={FaCheck} color="green.500" />
+      </HStack>
+    );
+  }
 
   return (
     <>
@@ -124,6 +142,7 @@ const Email: React.FC = () => {
         <FormErrorMessage>{error.errorMessage}</FormErrorMessage>
       )}
 
+      {/* TODO loading state, just use react query */}
       <Button
         type="submit"
         bg="primary.500"
