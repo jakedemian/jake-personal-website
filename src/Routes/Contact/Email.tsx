@@ -30,7 +30,7 @@ type FormError = {
 const Email: React.FC = () => {
   const [formState, setFormState] = useState<FormState>(defaultFormState);
   const [error, setError] = useState<FormError | null>(null);
-  const [complete, setComplete] = useState<boolean>(false);
+  const [complete /* setComplete */] = useState<boolean>(false);
 
   const FormErrorMessage = ({ children }: { children: string }) => {
     return (
@@ -40,53 +40,54 @@ const Email: React.FC = () => {
     );
   };
 
-  const handleSubmit = async () => {
-    if (!formState.email) {
-      setError({
-        field: 'email',
-        errorMessage: 'Email address is required so that I can respond to you!',
-      });
-    }
+  // TODO uncomment handleSubmit below, killing prod emails for now
+  // const handleSubmit = async () => {
+  //   if (!formState.email) {
+  //     setError({
+  //       field: 'email',
+  //       errorMessage: 'Email address is required so that I can respond to you!',
+  //     });
+  //   }
 
-    if (
-      // if this regex doesn't work you can blame chat gpt (I even used v4 with the browsing plugin!)
-      !formState.email.match(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)
-    ) {
-      setError({
-        field: 'email',
-        errorMessage: 'A valid email address must be used.',
-      });
-    }
+  //   if (
+  //     // if this regex doesn't work you can blame chat gpt (I even used v4 with the browsing plugin!)
+  //     !formState.email.match(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)
+  //   ) {
+  //     setError({
+  //       field: 'email',
+  //       errorMessage: 'A valid email address must be used.',
+  //     });
+  //   }
 
-    if (!formState.message) {
-      setError({
-        field: 'message',
-        errorMessage: 'A message is required',
-      });
-    }
+  //   if (!formState.message) {
+  //     setError({
+  //       field: 'message',
+  //       errorMessage: 'A message is required',
+  //     });
+  //   }
 
-    // TODO this only works in production at the moment, so I need
-    //to a) create a local vercel dev environment for testing this,
-    //I also need to mock the email sending, and finally I need to
-    //wrap this is something like react query instead of using a raw
-    //fetch
-    const response = await fetch('https://jakedemian.dev/api/send-email', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        to: 'jakedemian@gmail.com',
-        from: 'jakedemian@gmail.com',
-        subject: '👀 jakedemian.dev email form',
-        text: `From <${formState.email}>: ${formState.message}`,
-      }),
-    });
+  //   // TODO this only works in production at the moment, so I need
+  //   //to a) create a local vercel dev environment for testing this,
+  //   //I also need to mock the email sending, and finally I need to
+  //   //wrap this is something like react query instead of using a raw
+  //   //fetch
+  //   const response = await fetch('https://jakedemian.dev/api/send-email', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify({
+  //       to: 'jakedemian@gmail.com',
+  //       from: 'jakedemian@gmail.com',
+  //       subject: '👀 jakedemian.dev email form',
+  //       text: `From <${formState.email}>: ${formState.message}`,
+  //     }),
+  //   });
 
-    if (response.status === 200) {
-      setComplete(true);
-    }
-  };
+  //   if (response.status === 200) {
+  //     setComplete(true);
+  //   }
+  // };
 
   if (complete) {
     return (
@@ -104,7 +105,7 @@ const Email: React.FC = () => {
       <HStack alignItems="center">
         <Text>Email Address</Text>
         <Tooltip
-          label="I promise I won't sell it! 🙏 I just need to know who to reply to."
+          label="I promise I won't sell it 🙏 I just need to know who to reply to!"
           placement="top"
           fontSize="xs"
         >
@@ -114,7 +115,7 @@ const Email: React.FC = () => {
         </Tooltip>
       </HStack>
       <Input
-        placeholder="beatrice.pennywinkle.1933@aol.com"
+        placeholder="mary.sue@email.com"
         type="email"
         onChange={event => {
           if (error?.field === 'email') {
@@ -130,7 +131,7 @@ const Email: React.FC = () => {
       <Box h={4} />
       <Text>Message</Text>
       <Textarea
-        placeholder="How do I download more RAM?"
+        placeholder="What can I do for you?"
         onChange={event => {
           if (error?.field === 'message') {
             setError(null);
@@ -146,13 +147,17 @@ const Email: React.FC = () => {
       <Button
         type="submit"
         bg="primary.500"
-        isDisabled={!formState.email || !formState.message}
         rightIcon={<Icon as={HiOutlineMail} />}
         _disabled={{ bg: '#1b1b1b', color: '#555' }}
-        onClick={() => handleSubmit()}
+        isDisabled={true}
+
+        // TODO uncomment onClick below, killing prod emails for now
+        // isDisabled={!formState.email || !formState.message}
+        // onClick={() => handleSubmit()}
       >
         Send
       </Button>
+      <Text>Emails temporarily disabled</Text>
     </>
   );
 };
