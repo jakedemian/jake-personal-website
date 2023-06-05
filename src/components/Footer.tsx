@@ -4,12 +4,15 @@ import {
   HStack,
   Icon,
   IconButton,
+  Link,
   Text,
   Tooltip,
+  VStack,
 } from '@chakra-ui/react';
-import { GoMarkGithub, GoMail, GoDeviceMobile } from 'react-icons/go';
-import { FaYoutube } from 'react-icons/fa';
+import { GoMarkGithub, GoMail } from 'react-icons/go';
+import { FaYoutube, FaLinkedin, FaDownload } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+import { isMobile } from 'react-device-detect';
 
 const snappyOneLiners = [
   'All rights ignored. Go ahead and steal it.',
@@ -33,9 +36,9 @@ const Footer = () => {
   return (
     <Flex flexDir="column" flex={1} justifyContent="flex-end">
       <HStack justifyContent="center" mb={2}>
-        <Tooltip label="Github" placement="top" fontSize="xs">
+        <Tooltip label="GitHub" placement="top" fontSize="xs">
           <IconButton
-            aria-label="Jake Demian Github profile"
+            aria-label="Jake Demian GitHub profile"
             onClick={() =>
               window.open('https://github.com/jakedemian', '_blank')
             }
@@ -44,22 +47,18 @@ const Footer = () => {
             icon={<Icon as={GoMarkGithub} />}
           />
         </Tooltip>
-        <Tooltip label="Email me" placement="top" fontSize="xs">
+        <Tooltip label="LinkedIn" placement="top" fontSize="xs">
           <IconButton
-            aria-label="Email Jake"
-            onClick={() => navigate('/contact')}
+            aria-label="Jake Demian LinkedIn profile"
+            onClick={() =>
+              window.open(
+                'https://www.linkedin.com/in/jacob-demian-5a96799a/',
+                '_blank'
+              )
+            }
             size="sm"
             variant="ghost"
-            icon={<Icon as={GoMail} />}
-          />
-        </Tooltip>
-        <Tooltip label="Text me" placement="top" fontSize="xs">
-          <IconButton
-            aria-label="Sms Text Jake"
-            onClick={() => navigate('/contact')}
-            size="sm"
-            variant="ghost"
-            icon={<Icon as={GoDeviceMobile} />}
+            icon={<Icon as={FaLinkedin} />}
           />
         </Tooltip>
         <Tooltip label="Youtube" placement="top" fontSize="xs">
@@ -76,7 +75,35 @@ const Footer = () => {
             icon={<Icon as={FaYoutube} />}
           />
         </Tooltip>
+        <Tooltip label="Email me" placement="top" fontSize="xs">
+          <IconButton
+            aria-label="Email Jake"
+            onClick={() => navigate('/contact')}
+            size="sm"
+            variant="ghost"
+            icon={<Icon as={GoMail} />}
+          />
+          {/* <Tooltip label="Text me" placement="top" fontSize="xs">
+          <IconButton
+            aria-label="Sms Text Jake"
+            onClick={() => navigate('/contact')}
+            size="sm"
+            variant="ghost"
+            icon={<Icon as={GoDeviceMobile} />}
+          />
+        </Tooltip> */}
+        </Tooltip>
       </HStack>
+      {isMobile && ( // TODO try to make this a response value later, like using {base: foo, lg: bar}
+        <VStack pt={{ base: 1, lg: 16 }} mb={4}>
+          <Link href="/jake-demian-resume.pdf" target="_blank" variant="ghost">
+            <HStack>
+              <Icon as={FaDownload} />
+              <Text fontSize={11}>Download Resume</Text>
+            </HStack>
+          </Link>
+        </VStack>
+      )}
       <Text fontSize={13} textAlign="center">
         &copy; {new Date().getFullYear()} Jake Demian
       </Text>
