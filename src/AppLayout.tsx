@@ -3,7 +3,10 @@ import {
   Flex,
   Grid,
   HStack,
+  Icon,
+  Link,
   Switch,
+  Text,
   useColorMode,
   VStack,
 } from '@chakra-ui/react';
@@ -12,6 +15,7 @@ import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { SunIcon, MoonIcon } from '@chakra-ui/icons';
 import { AnimatePresence } from 'framer-motion';
 import { isMobile } from 'react-device-detect';
+import { FaDownload } from 'react-icons/fa';
 
 import MenuButton from 'src/Menu/MenuButton';
 import TypedText from 'src/Menu/TypedText';
@@ -76,6 +80,20 @@ const AppLayout: React.FC = () => {
                 Contact
               </MenuButton>
             </Flex>
+            {!isMobile && ( // TODO try to make this a response value later, like using {base: foo, lg: bar}
+              <VStack pt={{ base: 1, lg: 16 }}>
+                <Link
+                  href="/jake-demian-resume.pdf"
+                  target="_blank"
+                  variant="ghost"
+                >
+                  <HStack>
+                    <Icon as={FaDownload} />
+                    <Text fontSize={11}>Download Resume</Text>
+                  </HStack>
+                </Link>
+              </VStack>
+            )}
           </VStack>
           <Box>
             <AnimatePresence exitBeforeEnter>
