@@ -14,6 +14,8 @@ import React, { useState } from 'react';
 import { FaCheck, FaQuestionCircle } from 'react-icons/fa';
 import { HiOutlineMail } from 'react-icons/hi';
 
+import { useIsDark } from 'src/hooks/useIsDark';
+
 type FormState = {
   email: string;
   message: string;
@@ -34,6 +36,7 @@ const Email: React.FC = () => {
   const [error, setError] = useState<FormError | null>(null);
   const [complete, setComplete] = useState<boolean>(false);
   const { colors } = useTheme();
+  const { isDark } = useIsDark();
 
   const FormErrorMessage = ({ children }: { children: string }) => {
     return (
@@ -49,6 +52,7 @@ const Email: React.FC = () => {
         field: 'email',
         errorMessage: 'Email address is required so that I can respond to you!',
       });
+      return;
     }
 
     if (
@@ -59,6 +63,7 @@ const Email: React.FC = () => {
         field: 'email',
         errorMessage: 'A valid email address must be used.',
       });
+      return;
     }
 
     if (!formState.message) {
@@ -66,6 +71,7 @@ const Email: React.FC = () => {
         field: 'message',
         errorMessage: 'A message is required',
       });
+      return;
     }
 
     // TODO this only works in production at the moment, so I need
@@ -149,8 +155,9 @@ const Email: React.FC = () => {
       <Button
         type="submit"
         bg="primary.500"
+        color="white"
         rightIcon={<Icon as={HiOutlineMail} />}
-        _disabled={{ bg: '#1b1b1b', color: '#555' }}
+        _disabled={{ bg: isDark ? '#1b1b1b' : '#eee', color: '#555' }}
         isDisabled={!formState.email || !formState.message}
         onClick={() => handleSubmit()}
         // TODO this is stretching automatically without setting a width due to
