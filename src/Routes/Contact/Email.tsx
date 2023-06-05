@@ -70,7 +70,7 @@ const Email: React.FC = () => {
     //I also need to mock the email sending, and finally I need to
     //wrap this is something like react query instead of using a raw
     //fetch
-    const response = await fetch('jakedemian.dev/api/send-email', {
+    const response = await fetch('https://jakedemian.dev/api/send-email', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
