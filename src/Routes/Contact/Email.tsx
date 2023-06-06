@@ -75,12 +75,7 @@ const Email: React.FC = () => {
       return;
     }
 
-    // TODO this only works in production at the moment, so I need
-    //to a) create a local vercel dev environment for testing this,
-    //I also need to mock the email sending, and finally I need to
-    //wrap this is something like react query instead of using a raw
-    //fetch
-    const response = await fetch('https://jakedemian.dev/api/send-email', {
+    const response = await fetch(process.env.REACT_APP_API_ENDPOINT as string, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
