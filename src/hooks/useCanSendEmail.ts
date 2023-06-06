@@ -7,6 +7,7 @@ export const useCanSendEmail = () => {
 
   const handleSuccessfulEmailSend = () => {
     localStorage.setItem('email_sent_timestamp', String(new Date().getTime()));
+    setCanSendEmail(false);
   };
 
   useEffect(() => {
