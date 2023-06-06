@@ -13,6 +13,7 @@ import {
 import React, { useState } from 'react';
 import { FaCheck, FaQuestionCircle } from 'react-icons/fa';
 import { HiOutlineMail } from 'react-icons/hi';
+import { useMutation } from 'react-query';
 
 import { useCanSendEmail } from 'src/hooks/useCanSendEmail';
 import { useIsDark } from 'src/hooks/useIsDark';
@@ -47,6 +48,38 @@ const Email: React.FC = () => {
     );
   };
 
+  const mutation = useMutation(
+    async () => {
+      const response = await fetch(
+        process.env.REACT_APP_API_ENDPOINT as string,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            to: 'jakedemian@gmail.com',
+            from: 'jakedemian@gmail.com',
+            subject: '👀 jakedemian.dev email form',
+            text: `From <${formState.email}>: ${formState.message}`,
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const message = await response.text();
+      return message;
+    },
+    {
+      onSuccess: () => {
+        handleSuccessfulEmailSend();
+      },
+    }
+  );
+
   const handleSubmit = async () => {
     if (!formState.email) {
       setError({
@@ -75,22 +108,7 @@ const Email: React.FC = () => {
       return;
     }
 
-    const response = await fetch(process.env.REACT_APP_API_ENDPOINT as string, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        to: 'jakedemian@gmail.com',
-        from: 'jakedemian@gmail.com',
-        subject: '👀 jakedemian.dev email form',
-        text: `From <${formState.email}>: ${formState.message}`,
-      }),
-    });
-
-    if (response.status === 200) {
-      handleSuccessfulEmailSend();
-    }
+    mutation.mutate();
   };
 
   if (!canSendEmail) {
@@ -147,14 +165,24 @@ const Email: React.FC = () => {
         <FormErrorMessage>{error.errorMessage}</FormErrorMessage>
       )}
 
-      {/* TODO loading state, just use react query */}
       <Button
         type="submit"
         bg="primary.500"
         color="white"
         rightIcon={<Icon as={HiOutlineMail} />}
-        _disabled={{ bg: isDark ? '#1b1b1b' : '#eee', color: '#555' }}
-        isDisabled={!formState.email || !formState.message}
+        _disabled={{
+          bg: isDark ? '#1b1b1b' : '#eee',
+          color: '#555',
+          _hover: {
+            bg: isDark ? '#1b1b1b' : '#eee',
+            color: '#555',
+            cursor: 'default',
+          },
+        }}
+        _hover={{ bg: 'primary.400' }}
+        isDisabled={
+          !formState.email || !formState.message || mutation.isLoading
+        }
         onClick={() => handleSubmit()}
         // TODO this is stretching automatically without setting a width due to
         //flex and i'm so close to release I'll fix it later, hardcoding for now
