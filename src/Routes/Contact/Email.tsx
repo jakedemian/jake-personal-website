@@ -14,6 +14,7 @@ import React, { useState } from 'react';
 import { FaCheck, FaQuestionCircle } from 'react-icons/fa';
 import { HiOutlineMail } from 'react-icons/hi';
 
+import { useCanSendEmail } from 'src/hooks/useCanSendEmail';
 import { useIsDark } from 'src/hooks/useIsDark';
 
 type FormState = {
@@ -34,7 +35,7 @@ type FormError = {
 const Email: React.FC = () => {
   const [formState, setFormState] = useState<FormState>(defaultFormState);
   const [error, setError] = useState<FormError | null>(null);
-  const [complete, setComplete] = useState<boolean>(false);
+  const { canSendEmail, handleSuccessfulEmailSend } = useCanSendEmail();
   const { colors } = useTheme();
   const { isDark } = useIsDark();
 
@@ -93,15 +94,15 @@ const Email: React.FC = () => {
     });
 
     if (response.status === 200) {
-      setComplete(true);
+      handleSuccessfulEmailSend();
     }
   };
 
-  if (complete) {
+  if (!canSendEmail) {
     return (
       <VStack p={{ base: 8, lg: 0 }} textAlign={'center'} mt={8}>
         <Text fontSize={20}>
-          Success! Thanks for reaching out, I&apos;ll get back to you soon!
+          Thanks for reaching out, I&apos;ll get back to you soon!
         </Text>
         <FaCheck size={70} color={colors.green[500]} />
       </VStack>
