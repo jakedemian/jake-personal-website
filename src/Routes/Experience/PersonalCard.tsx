@@ -97,7 +97,7 @@ const PersonalCard: React.FC<PersonalCardProps> = ({
               {logo?.path && (
                 <Image
                   src={logo.path}
-                  maxW="70%"
+                  maxW={{ base: 120, lg: 160 }}
                   maxH={65}
                   filter={isDark ? 'brightness(9999%)' : 'brightness(0%)'}
                 />
