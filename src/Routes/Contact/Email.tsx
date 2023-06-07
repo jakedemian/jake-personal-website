@@ -42,7 +42,9 @@ const spin = keyframes`
 
 const Email: React.FC = () => {
   const [formState, setFormState] = useState<FormState>(defaultFormState);
-  const [error, setError] = useState<FormError | null>(null);
+  const [validationError, setValidationError] = useState<FormError | null>(
+    null
+  );
   const { canSendEmail, handleSuccessfulEmailSend } = useCanSendEmail();
   const { colors } = useTheme();
   const { isDark } = useIsDark();
@@ -78,7 +80,7 @@ const Email: React.FC = () => {
       );
 
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        throw await response.text();
       }
 
       const message = await response.text();
@@ -93,7 +95,7 @@ const Email: React.FC = () => {
 
   const handleSubmit = async () => {
     if (!formState.email) {
-      setError({
+      setValidationError({
         field: 'email',
         errorMessage: 'Email address is required so that I can respond to you!',
       });
@@ -104,7 +106,7 @@ const Email: React.FC = () => {
       // if this regex doesn't work you can blame chat gpt (I even used v4 with the browsing plugin!)
       !formState.email.match(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)
     ) {
-      setError({
+      setValidationError({
         field: 'email',
         errorMessage: 'A valid email address must be used.',
       });
@@ -112,7 +114,7 @@ const Email: React.FC = () => {
     }
 
     if (!formState.message) {
-      setError({
+      setValidationError({
         field: 'message',
         errorMessage: 'A message is required',
       });
@@ -151,31 +153,29 @@ const Email: React.FC = () => {
         placeholder="mary.sue@email.com"
         type="email"
         onChange={event => {
-          if (error?.field === 'email') {
-            setError(null);
+          if (validationError?.field === 'email') {
+            setValidationError(null);
           }
           setFormState({ ...formState, email: event.target.value });
         }}
       />
-      {error?.field === 'email' && (
-        <FormErrorMessage>{error.errorMessage}</FormErrorMessage>
+      {validationError?.field === 'email' && (
+        <FormErrorMessage>{validationError.errorMessage}</FormErrorMessage>
       )}
-
       <Box h={4} />
       <Text>Message</Text>
       <Textarea
         placeholder="What can I do for you?"
         onChange={event => {
-          if (error?.field === 'message') {
-            setError(null);
+          if (validationError?.field === 'message') {
+            setValidationError(null);
           }
           setFormState({ ...formState, message: event.target.value });
         }}
       ></Textarea>
-      {error?.field === 'message' && (
-        <FormErrorMessage>{error.errorMessage}</FormErrorMessage>
+      {validationError?.field === 'message' && (
+        <FormErrorMessage>{validationError.errorMessage}</FormErrorMessage>
       )}
-
       <Button
         type="submit"
         bg="primary.500"
@@ -210,6 +210,11 @@ const Email: React.FC = () => {
           )}
         </HStack>
       </Button>
+      <Box textAlign={{ base: 'center', lg: 'left' }}>
+        {mutation.isError && (
+          <FormErrorMessage>{String(mutation.error)}</FormErrorMessage>
+        )}
+      </Box>
     </VStack>
   );
 };
