@@ -4,6 +4,7 @@ import {
   HStack,
   Icon,
   Input,
+  keyframes,
   Text,
   Textarea,
   Tooltip,
@@ -13,6 +14,7 @@ import {
 import React, { useState } from 'react';
 import { FaCheck, FaQuestionCircle } from 'react-icons/fa';
 import { HiOutlineMail } from 'react-icons/hi';
+import { ImSpinner9 } from 'react-icons/im';
 import { useMutation } from 'react-query';
 
 import { useCanSendEmail } from 'src/hooks/useCanSendEmail';
@@ -33,6 +35,11 @@ type FormError = {
   errorMessage: string;
 };
 
+const spin = keyframes`
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+`;
+
 const Email: React.FC = () => {
   const [formState, setFormState] = useState<FormState>(defaultFormState);
   const [error, setError] = useState<FormError | null>(null);
@@ -46,6 +53,10 @@ const Email: React.FC = () => {
         {children}
       </Text>
     );
+  };
+
+  const isSubmitDisabled = () => {
+    return !formState.email || !formState.message || mutation.isLoading;
   };
 
   const mutation = useMutation(
@@ -169,10 +180,9 @@ const Email: React.FC = () => {
         type="submit"
         bg="primary.500"
         color="white"
-        rightIcon={<Icon as={HiOutlineMail} />}
         _disabled={{
           bg: isDark ? '#1b1b1b' : '#eee',
-          color: '#555',
+          color: isDark ? '#555' : '#aaa',
           _hover: {
             bg: isDark ? '#1b1b1b' : '#eee',
             color: '#555',
@@ -180,15 +190,25 @@ const Email: React.FC = () => {
           },
         }}
         _hover={{ bg: 'primary.400' }}
-        isDisabled={
-          !formState.email || !formState.message || mutation.isLoading
-        }
+        isDisabled={isSubmitDisabled()}
         onClick={() => handleSubmit()}
         // TODO this is stretching automatically without setting a width due to
         //flex and i'm so close to release I'll fix it later, hardcoding for now
         w={{ base: 'auto', lg: 150 }}
       >
-        Send
+        <HStack w="100%" justifyContent="center">
+          {mutation.isLoading ? <Text>Working</Text> : <Text>Send</Text>}
+          {mutation.isLoading ? (
+            <>
+              <Icon
+                as={ImSpinner9}
+                animation={`${spin} 0.75s linear infinite`}
+              />
+            </>
+          ) : (
+            <Icon as={HiOutlineMail} />
+          )}
+        </HStack>
       </Button>
     </VStack>
   );
