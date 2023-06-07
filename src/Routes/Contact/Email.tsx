@@ -4,6 +4,7 @@ import {
   HStack,
   Icon,
   Input,
+  keyframes,
   Text,
   Textarea,
   Tooltip,
@@ -13,6 +14,8 @@ import {
 import React, { useState } from 'react';
 import { FaCheck, FaQuestionCircle } from 'react-icons/fa';
 import { HiOutlineMail } from 'react-icons/hi';
+import { ImSpinner9 } from 'react-icons/im';
+import { useMutation } from 'react-query';
 
 import { useCanSendEmail } from 'src/hooks/useCanSendEmail';
 import { useIsDark } from 'src/hooks/useIsDark';
@@ -32,9 +35,16 @@ type FormError = {
   errorMessage: string;
 };
 
+const spin = keyframes`
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+`;
+
 const Email: React.FC = () => {
   const [formState, setFormState] = useState<FormState>(defaultFormState);
-  const [error, setError] = useState<FormError | null>(null);
+  const [validationError, setValidationError] = useState<FormError | null>(
+    null
+  );
   const { canSendEmail, handleSuccessfulEmailSend } = useCanSendEmail();
   const { colors } = useTheme();
   const { isDark } = useIsDark();
@@ -47,9 +57,45 @@ const Email: React.FC = () => {
     );
   };
 
+  const isSubmitDisabled = () => {
+    return !formState.email || !formState.message || mutation.isLoading;
+  };
+
+  const mutation = useMutation(
+    async () => {
+      const response = await fetch(
+        process.env.REACT_APP_API_ENDPOINT as string,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            to: 'jakedemian@gmail.com',
+            from: 'jakedemian@gmail.com',
+            subject: '👀 jakedemian.dev email form',
+            text: `From <${formState.email}>: ${formState.message}`,
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        throw await response.text();
+      }
+
+      const message = await response.text();
+      return message;
+    },
+    {
+      onSuccess: () => {
+        handleSuccessfulEmailSend();
+      },
+    }
+  );
+
   const handleSubmit = async () => {
     if (!formState.email) {
-      setError({
+      setValidationError({
         field: 'email',
         errorMessage: 'Email address is required so that I can respond to you!',
       });
@@ -60,7 +106,7 @@ const Email: React.FC = () => {
       // if this regex doesn't work you can blame chat gpt (I even used v4 with the browsing plugin!)
       !formState.email.match(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)
     ) {
-      setError({
+      setValidationError({
         field: 'email',
         errorMessage: 'A valid email address must be used.',
       });
@@ -68,29 +114,14 @@ const Email: React.FC = () => {
     }
 
     if (!formState.message) {
-      setError({
+      setValidationError({
         field: 'message',
         errorMessage: 'A message is required',
       });
       return;
     }
 
-    const response = await fetch(process.env.REACT_APP_API_ENDPOINT as string, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        to: 'jakedemian@gmail.com',
-        from: 'jakedemian@gmail.com',
-        subject: '👀 jakedemian.dev email form',
-        text: `From <${formState.email}>: ${formState.message}`,
-      }),
-    });
-
-    if (response.status === 200) {
-      handleSuccessfulEmailSend();
-    }
+    mutation.mutate();
   };
 
   if (!canSendEmail) {
@@ -122,46 +153,68 @@ const Email: React.FC = () => {
         placeholder="mary.sue@email.com"
         type="email"
         onChange={event => {
-          if (error?.field === 'email') {
-            setError(null);
+          if (validationError?.field === 'email') {
+            setValidationError(null);
           }
           setFormState({ ...formState, email: event.target.value });
         }}
       />
-      {error?.field === 'email' && (
-        <FormErrorMessage>{error.errorMessage}</FormErrorMessage>
+      {validationError?.field === 'email' && (
+        <FormErrorMessage>{validationError.errorMessage}</FormErrorMessage>
       )}
-
       <Box h={4} />
       <Text>Message</Text>
       <Textarea
         placeholder="What can I do for you?"
         onChange={event => {
-          if (error?.field === 'message') {
-            setError(null);
+          if (validationError?.field === 'message') {
+            setValidationError(null);
           }
           setFormState({ ...formState, message: event.target.value });
         }}
       ></Textarea>
-      {error?.field === 'message' && (
-        <FormErrorMessage>{error.errorMessage}</FormErrorMessage>
+      {validationError?.field === 'message' && (
+        <FormErrorMessage>{validationError.errorMessage}</FormErrorMessage>
       )}
-
-      {/* TODO loading state, just use react query */}
       <Button
         type="submit"
         bg="primary.500"
         color="white"
-        rightIcon={<Icon as={HiOutlineMail} />}
-        _disabled={{ bg: isDark ? '#1b1b1b' : '#eee', color: '#555' }}
-        isDisabled={!formState.email || !formState.message}
+        _disabled={{
+          bg: isDark ? '#1b1b1b' : '#eee',
+          color: isDark ? '#555' : '#aaa',
+          _hover: {
+            bg: isDark ? '#1b1b1b' : '#eee',
+            color: '#555',
+            cursor: 'default',
+          },
+        }}
+        _hover={{ bg: 'primary.400' }}
+        isDisabled={isSubmitDisabled()}
         onClick={() => handleSubmit()}
         // TODO this is stretching automatically without setting a width due to
         //flex and i'm so close to release I'll fix it later, hardcoding for now
         w={{ base: 'auto', lg: 150 }}
       >
-        Send
+        <HStack w="100%" justifyContent="center">
+          {mutation.isLoading ? <Text>Working</Text> : <Text>Send</Text>}
+          {mutation.isLoading ? (
+            <>
+              <Icon
+                as={ImSpinner9}
+                animation={`${spin} 0.75s linear infinite`}
+              />
+            </>
+          ) : (
+            <Icon as={HiOutlineMail} />
+          )}
+        </HStack>
       </Button>
+      <Box textAlign={{ base: 'center', lg: 'left' }}>
+        {mutation.isError && (
+          <FormErrorMessage>{String(mutation.error)}</FormErrorMessage>
+        )}
+      </Box>
     </VStack>
   );
 };

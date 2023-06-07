@@ -33,6 +33,6 @@ module.exports = async (req, res) => {
     if (error.response) {
       console.error(error.response.body);
     }
-    res.status(500).send(`Error sending email: ${JSON.stringify(error)}`);
+    res.status(500).send(error.message);
   }
 };
