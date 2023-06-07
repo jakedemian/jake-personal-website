@@ -48,7 +48,7 @@ const ProfessionalCard: React.FC<ProfessionalCardProps> = ({
       <Flex flexDir={{ base: 'column', lg: 'row' }} gap={4} p={4}>
         <VStack alignItems="flex-start" gap={4}>
           <HStack
-            justifyContent={{ base: 'space-between', lg: 'flex-start' }}
+            justifyContent="space-between"
             w="100%"
             position="relative"
             gap={{ base: 0, lg: 8 }}
@@ -76,14 +76,11 @@ const ProfessionalCard: React.FC<ProfessionalCardProps> = ({
                 {`${timeframeStart} - ${timeframeEnd}`}
               </Text>
             </Box>
-            <HStack
-              maxW={200}
-              justifyContent={{ base: 'flex-end', lg: 'flex-start' }}
-            >
+            <HStack justifyContent="flex-end">
               <Image
-                filter={isDark ? 'brightness(999%)' : 'brightness(0%)'}
+                filter={isDark ? 'brightness(9999%)' : 'brightness(0%)'}
                 src={logoPath}
-                maxW="70%"
+                maxW={{ base: 90, lg: 160 }}
                 maxH={65}
               />
             </HStack>
