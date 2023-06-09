@@ -5,6 +5,7 @@ import AppLayout from 'src/AppLayout';
 import render from 'src/test/render';
 
 describe('Home.tsx', () => {
+  // weak test
   it('Renders the Home page', () => {
     render(<AppLayout />);
     const themeSwitcher = screen.getByTestId('theme-switcher');

@@ -18,4 +18,18 @@ describe('TypedText.tsx', () => {
       }
     );
   });
+
+  it('renders as an h1 when isH1 prop is provided', async () => {
+    render(<TypedText isH1>Test</TypedText>);
+
+    const textElement = screen.getByTestId(/jake-demian/i);
+    expect(textElement.tagName).toBe('H1');
+  });
+
+  it('renders as an p tag when isH1 prop is NOT provided', async () => {
+    render(<TypedText>Test</TypedText>);
+
+    const textElement = screen.getByTestId(/typed-text/i);
+    expect(textElement.tagName).toBe('P');
+  });
 });
