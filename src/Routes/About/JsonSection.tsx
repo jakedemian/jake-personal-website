@@ -66,7 +66,7 @@ const JsonSection: React.FC = () => {
           bg="red.500"
           borderRadius={'50%'}
           borderWidth={1}
-          borderColor="gray.400"
+          borderColor="gray.500"
           borderStyle="solid"
         />
         <Box
@@ -75,16 +75,16 @@ const JsonSection: React.FC = () => {
           bg="yellow.400"
           borderRadius={'50%'}
           borderWidth={1}
-          borderColor="gray.400"
+          borderColor="gray.500"
           borderStyle="solid"
         />
         <Box
           w={3}
           h={3}
-          bg="green.400"
+          bg="green.300"
           borderRadius={'50%'}
           borderWidth={1}
-          borderColor="gray.400"
+          borderColor="gray.500"
           borderStyle="solid"
         />
       </HStack>
