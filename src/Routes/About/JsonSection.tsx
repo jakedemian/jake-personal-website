@@ -88,10 +88,39 @@ const JsonSection: React.FC = () => {
           borderStyle="solid"
         />
       </HStack>
-      <Box ml={8} mb={6} fontSize={{ base: 13, lg: 14 }}>
+      <Box ml={8} mb={6} fontSize={{ base: 13, lg: 14 }} pt={4}>
+        <pre>
+          <span
+            style={{
+              fontFamily: 'Source Code Pro',
+              color: colors.primary[300],
+            }}
+          >
+            {'jaked '}
+          </span>
+          <span
+            style={{
+              fontFamily: 'Source Code Pro',
+              fontWeight: 700,
+              color: colors.yellow[500],
+            }}
+          >
+            {'~'}
+          </span>
+          <span
+            style={{
+              fontFamily: 'Source Code Pro',
+              color: colors.primary[300],
+            }}
+          >
+            {' $ '}
+          </span>
+          <span style={{ fontFamily: 'Source Code Pro' }}>
+            {'sudo ./info.sh --name=jake'}
+          </span>
+        </pre>
         <pre style={{ fontFamily: 'Source Code Pro' }}>
-          {` 
-{
+          {`{
   "name": "Jacob Demian",
 `}
 
