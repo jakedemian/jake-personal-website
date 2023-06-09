@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Text, VStack } from '@chakra-ui/layout';
+import { Box, Heading, VStack } from '@chakra-ui/layout';
 import { motion } from 'framer-motion';
 
 const pageTransition = {
@@ -23,9 +23,9 @@ const Page: React.FC<{ title: string; children: React.ReactNode }> = ({
         alignItems={{ base: 'center', lg: 'flex-start' }}
         pt={{ base: 0, lg: 4 }}
       >
-        <Text fontSize={24} fontWeight={600}>
+        <Heading fontFamily="Montserrat" as="h2" fontSize={24} fontWeight={600}>
           {title}
-        </Text>
+        </Heading>
         <Box flex={1} w="100%">
           {children}
         </Box>

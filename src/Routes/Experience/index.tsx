@@ -16,6 +16,7 @@ import Personal from 'src/Routes/Experience/Personal';
 const tabStyles = {
   _selected: { backgroundColor: 'primary.500', color: 'white' },
   _active: { backgroundColor: 'primary.500', color: 'white' },
+  backgroundColor: 'gray.900',
   borderRadius: 2,
   flex: 1,
 };
@@ -23,7 +24,7 @@ const tabStyles = {
 const Experience: React.FC = () => {
   return (
     <Page title="Experience">
-      <VStack w="100%">
+      <VStack w="100%" mt={4}>
         <Tabs variant="soft-rounded" w="100%">
           <HStack justifyContent="center">
             <TabList w="100%" mx={{ base: 4, lg: 0 }} gap={2}>
@@ -34,7 +35,7 @@ const Experience: React.FC = () => {
           <TabPanels
             mt={2}
             overflowY={{ base: 'visible', lg: 'auto' }}
-            h={{ base: 'auto', lg: 600 }}
+            h={{ base: 'auto', lg: 600 }} // TODO look into making this larger (taller)
             w="100%"
           >
             <TabPanel p={{ base: 4, lg: 0 }}>
