@@ -48,7 +48,7 @@ const AppLayout: React.FC = () => {
           gap={{ base: 2, lg: 8 }}
         >
           <VStack p={4}>
-            <TypedText>Jake Demian</TypedText>
+            <TypedText isH1>Jake Demian</TypedText>
             <Flex
               flexDir={{ base: 'row', lg: 'column' }}
               justifyContent={{ base: 'center', lg: 'flex-start' }}
