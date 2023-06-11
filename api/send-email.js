@@ -11,14 +11,10 @@ if (process.env.NODE_ENV === 'production') {
 module.exports = async (req, res) => {
   try {
     const sendgridApiKey = process.env.SENDGRID_API_KEY;
-    if (!sendgridApiKey) {
-      throw new Error('SENDGRID_API_KEY was not found.');
-    }
 
     sgMail.setApiKey(sendgridApiKey);
 
     const { to, from, subject, text } = req.body;
-
     const msg = {
       to,
       from,

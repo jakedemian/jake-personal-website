@@ -64,7 +64,7 @@ const Email: React.FC = () => {
   const mutation = useMutation(
     async () => {
       const response = await fetch(
-        process.env.REACT_APP_API_ENDPOINT as string,
+        process.env.REACT_APP_SEND_EMAIL_API_ENDPOINT as string,
         {
           method: 'POST',
           headers: {
