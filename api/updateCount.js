@@ -10,6 +10,14 @@ module.exports = async (req, res) => {
 
   const { clicksToAdd } = req.body;
 
+  if (typeof clicksToAdd !== 'number' || !Number.isInteger(clicksToAdd)) {
+    throw new TypeError('clicksToAdd must be an integer');
+  }
+
+  if (clicksToAdd <= 0) {
+    throw new RangeError('clicksToAdd must be greater than 0');
+  }
+
   try {
     await clicks.hincrby('clickCount', 'value', clicksToAdd);
     res.status(200).send({ message: 'ok.' });
