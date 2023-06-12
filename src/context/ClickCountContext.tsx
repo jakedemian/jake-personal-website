@@ -50,7 +50,13 @@ export const ClickCountProvider: React.FC<{ children: React.ReactNode }> = ({
   let timerId: NodeJS.Timeout | null = null;
   useEffect(() => {
     const updateCount = async (clicksToAdd: number) => {
-      console.log('Sending update value:', clicksToAdd);
+      fetch('/api/updateCount', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ clicksToAdd }),
+      });
     };
 
     if (clicksSinceLastUpdate === 0) return;

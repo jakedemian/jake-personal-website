@@ -1,21 +1,22 @@
-// /* eslint-disable import/order */
-// /* eslint-disable no-undef */
-// /* eslint-disable @typescript-eslint/no-var-requires */
-// const redis = require('redis');
-// const { promisify } = require('util');
+/* eslint-disable no-undef */
+/* eslint-disable @typescript-eslint/no-var-requires */
+const { createClient } = require('@vercel/kv');
 
-// module.exports = async (req, res) => {
-//   const client = redis.createClient(process.env.KV_URL);
-//   const setAsync = promisify(client.set).bind(client);
+module.exports = async (req, res) => {
+  const clicks = createClient({
+    url: process.env.KV_REST_API_URL,
+    token: process.env.KV_REST_API_TOKEN,
+  });
 
-//   try {
-//     const newCount = await setAsync('clickCount');
-//     res.status(200).send({ newCount });
-//   } catch (error) {
-//     res.status(500).send({ error: 'Error incrementing count' });
-//   }
+  const { clicksToAdd } = req.body;
 
-//   client.quit();
-// };
-
-// refer to getCount for proper kv code
+  try {
+    await clicks.hincrby('clickCount', 'value', clicksToAdd);
+    res.status(200).send({ message: 'ok.' });
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .send({ error: 'An error occurred while updating the click count.' });
+  }
+};
