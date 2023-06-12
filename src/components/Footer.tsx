@@ -10,7 +10,7 @@ import {
   VStack,
 } from '@chakra-ui/react';
 import { GoMarkGithub, GoMail } from 'react-icons/go';
-import { FaYoutube, FaLinkedin, FaDownload } from 'react-icons/fa';
+import { FaYoutube, FaLinkedin, FaDownload, FaTwitter } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { isMobile } from 'react-device-detect';
 
@@ -59,6 +59,17 @@ const Footer = () => {
             size="sm"
             variant="ghost"
             icon={<Icon as={FaLinkedin} />}
+          />
+        </Tooltip>
+        <Tooltip label="Twitter" placement="top" fontSize="xs">
+          <IconButton
+            aria-label="Jake Demian Twitter profile"
+            onClick={() =>
+              window.open('https://twitter.com/jakedemian', '_blank')
+            }
+            size="sm"
+            variant="ghost"
+            icon={<Icon as={FaTwitter} />}
           />
         </Tooltip>
         <Tooltip label="Youtube" placement="top" fontSize="xs">

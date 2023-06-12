@@ -12,16 +12,19 @@ import React from 'react';
 import Page from 'src/Routes/Page';
 import Professional from 'src/Routes/Experience/Professional';
 import Personal from 'src/Routes/Experience/Personal';
-
-const tabStyles = {
-  _selected: { backgroundColor: 'primary.500', color: 'white' },
-  _active: { backgroundColor: 'primary.500', color: 'white' },
-  backgroundColor: 'gray.900',
-  borderRadius: 2,
-  flex: 1,
-};
+import { useIsDark } from 'src/hooks/useIsDark';
 
 const Experience: React.FC = () => {
+  const { isDark } = useIsDark();
+
+  const tabStyles = {
+    _selected: { backgroundColor: 'primary.500', color: 'white' },
+    _active: { backgroundColor: 'primary.500', color: 'white' },
+    backgroundColor: isDark ? 'gray.900' : 'gray.200',
+    borderRadius: 2,
+    flex: 1,
+  };
+
   return (
     <Page title="Experience">
       <VStack w="100%" mt={4}>

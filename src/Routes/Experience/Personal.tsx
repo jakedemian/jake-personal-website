@@ -24,11 +24,13 @@ const Personal: React.FC = () => {
           chips: [
             'React',
             'TypeScript',
+            'Node.js',
             'Yarn',
             'Git',
             'Vercel',
             'Jest',
             'Chakra UI',
+            'Redis',
           ],
         }}
       />
