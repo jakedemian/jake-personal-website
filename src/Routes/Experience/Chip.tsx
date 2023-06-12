@@ -26,6 +26,7 @@ export const ChipIconMap = {
   'C#': Icons.SiCsharp,
   HTML5: Icons.SiHtml5,
   CSS3: Icons.SiCss3,
+  Redis: Icons.SiRedis,
 };
 
 type ChipProps = {
