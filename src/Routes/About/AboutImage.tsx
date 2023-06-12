@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Box, Text, useColorMode, Icon, VStack } from '@chakra-ui/react';
 import { FaHeart, FaBaby } from 'react-icons/fa';
 import { GiBabyBottle } from 'react-icons/gi';
 import { isMobile } from 'react-device-detect';
 import { motion, AnimatePresence } from 'framer-motion';
+
+import { ClickCountContext } from 'src/context/ClickCountContext';
 
 const textOptions = [
   'Cute!',
@@ -23,6 +25,7 @@ let heartId = 0;
 const AboutImage: React.FC = () => {
   const colorMode = useColorMode();
   const isDark = colorMode.colorMode === 'dark';
+  const { incrementClickCount } = useContext(ClickCountContext);
 
   const getRandomText = () => {
     return textOptions[Math.floor(Math.random() * textOptions.length)];
@@ -118,6 +121,7 @@ const AboutImage: React.FC = () => {
               ...prevHearts,
               { id: heartId++, opacity: 1 },
             ]);
+            incrementClickCount();
           }}
           opacity={opacity}
           transition="opacity 0.2s"

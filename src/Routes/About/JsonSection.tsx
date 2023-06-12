@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Box, HStack, useTheme } from '@chakra-ui/react';
 import { desaturate } from 'polished';
+
+import { ClickCountContext } from 'src/context/ClickCountContext';
 
 const BORN_DATE_TIME = new Date(1991, 11, 9, 0, 6, 0, 0);
 const getExactAge = () => {
@@ -40,6 +42,7 @@ const FlashingCursor: React.FC = () => {
 
 const JsonSection: React.FC = () => {
   const { colors } = useTheme();
+  const { clickCount } = useContext(ClickCountContext);
 
   return (
     <Box
@@ -134,6 +137,7 @@ const JsonSection: React.FC = () => {
       "randy"
     ]
   },
+  "clickCount": ${clickCount === null ? 'Loading...' : clickCount},
   "otherInterests": [
     "game design",
     "running",

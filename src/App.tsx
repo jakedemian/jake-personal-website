@@ -9,8 +9,6 @@ import Experience from 'src/Routes/Experience';
 import Skillset from 'src/Routes/Skillset';
 
 const App = () => {
-  // useFaviconBlink(); // TODO come back to this later
-
   return (
     <Routes>
       <Route element={<AppLayout />}>
