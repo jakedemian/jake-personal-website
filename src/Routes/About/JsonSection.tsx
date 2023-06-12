@@ -3,6 +3,7 @@ import { Box, HStack, useTheme } from '@chakra-ui/react';
 import { desaturate } from 'polished';
 
 import { ClickCountContext } from 'src/context/ClickCountContext';
+import { useIsDark } from 'src/hooks/useIsDark';
 
 const BORN_DATE_TIME = new Date(1991, 11, 9, 0, 6, 0, 0);
 const getExactAge = () => {
@@ -43,24 +44,28 @@ const FlashingCursor: React.FC = () => {
 const JsonSection: React.FC = () => {
   const { colors } = useTheme();
   const { clickCount } = useContext(ClickCountContext);
+  const { isDark } = useIsDark();
 
   return (
     <Box
       lineHeight={1.3}
-      bg={desaturate(0.3, colors.primary[900])}
+      bg={isDark ? desaturate(0.3, colors.primary[900]) : colors.primary[900]}
       w={{ base: '90%', lg: '100%' }}
       borderRadius={4}
       mt={4}
       mb={{ base: 8, lg: 0 }}
+      overflow="hidden"
     >
       <HStack
         w="100%"
         h={6}
         alignItems="center"
         pl={4}
-        bg={desaturate(0.8, colors.primary[300])}
-        borderTopLeftRadius={4}
-        borderTopRightRadius={4}
+        bg={
+          isDark
+            ? desaturate(0.8, colors.primary[300])
+            : desaturate(0.6, colors.primary[100])
+        }
       >
         {/* Think about changing these depending on detected OS */}
         <Box
@@ -91,12 +96,12 @@ const JsonSection: React.FC = () => {
           borderStyle="solid"
         />
       </HStack>
-      <Box ml={8} mb={6} fontSize={{ base: 13, lg: 14 }} pt={4}>
+      <Box ml={8} mb={6} fontSize={{ base: 13, lg: 14 }} color="white" pt={4}>
         <pre>
           <span
             style={{
               fontFamily: 'Source Code Pro',
-              color: colors.primary[300],
+              color: isDark ? colors.primary[300] : colors.primary[100],
             }}
           >
             {'jaked '}
@@ -113,7 +118,7 @@ const JsonSection: React.FC = () => {
           <span
             style={{
               fontFamily: 'Source Code Pro',
-              color: colors.primary[300],
+              color: isDark ? colors.primary[300] : colors.primary[100],
             }}
           >
             {' $ '}
