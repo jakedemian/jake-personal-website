@@ -36,6 +36,20 @@ const Personal: React.FC = () => {
       />
       <PersonalCard
         {...{
+          projectName: 'Project Hierarchy Explorer',
+          logo: { path: '/img/project-hierarchy-explorer-logo.png' },
+          linkHref:
+            'https://marketplace.visualstudio.com/items?itemName=jake-demian.project-hierarchy-explorer',
+          linkAriaLabel: 'Link to download Project Hierachy Explorer extension',
+          shortDescription:
+            'Visual Studio Code extension that allows you to export a text representation your project structure.',
+          githubLink:
+            'https://github.com/jakedemian/project-hierarchy-explorer',
+          chips: ['TypeScript', 'VS Code', 'Yarn', 'Git'],
+        }}
+      />
+      <PersonalCard
+        {...{
           projectName: 'NutriVim',
           logo: { path: '/img/nutrivim-logo.png' },
 

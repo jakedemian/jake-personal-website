@@ -1,33 +1,9 @@
 import React from 'react';
 import { HStack, Text } from '@chakra-ui/react';
-import * as Icons from 'react-icons/si';
 import { IconType } from 'react-icons';
 
 import { useIsDark } from 'src/hooks/useIsDark';
-
-export const ChipIconMap = {
-  React: Icons.SiReact,
-  TypeScript: Icons.SiTypescript,
-  'Node.js': Icons.SiNodedotjs,
-  Yarn: Icons.SiYarn,
-  Git: Icons.SiGit,
-  Vercel: Icons.SiVercel,
-  Jest: Icons.SiJest,
-  Expo: Icons.SiExpo,
-  'React Native': Icons.SiReact,
-  Xcode: Icons.SiXcode,
-  'Android Studio': Icons.SiAndroidstudio,
-  'Chakra UI': Icons.SiChakraui,
-  Unity: Icons.SiUnity,
-  '.NET': Icons.SiDotnet,
-  Aseprite: Icons.SiAseprite,
-  npm: Icons.SiNpm,
-  JavaScript: Icons.SiJavascript,
-  'C#': Icons.SiCsharp,
-  HTML5: Icons.SiHtml5,
-  CSS3: Icons.SiCss3,
-  Redis: Icons.SiRedis,
-};
+import { ChipIconMap } from 'src/Routes/Experience/ChipIconMap';
 
 type ChipProps = {
   name: string;

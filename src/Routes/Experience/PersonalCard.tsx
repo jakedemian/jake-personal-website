@@ -16,8 +16,9 @@ import {
 import { ExternalLinkIcon } from '@chakra-ui/icons';
 
 import { useIsDark } from 'src/hooks/useIsDark';
-import { Chip, ChipIconMap } from 'src/Routes/Experience/Chip';
+import { Chip } from 'src/Routes/Experience/Chip';
 import { NonEmptyArray } from 'src/common/types';
+import { ChipIconMap } from 'src/Routes/Experience/ChipIconMap';
 
 interface PathLogo {
   path: string;
@@ -67,7 +68,11 @@ const PersonalCard: React.FC<PersonalCardProps> = ({
             gap={{ base: 0, lg: 8 }}
           >
             <Box whiteSpace="nowrap" w={{ base: '50%', lg: '45%' }}>
-              <Text fontSize={20} fontWeight={700} lineHeight={1.2}>
+              <Text
+                fontSize={projectName.length > 16 ? 16 : 20}
+                fontWeight={700}
+                lineHeight={1.2}
+              >
                 {projectName}
                 {linkHref && linkAriaLabel && (
                   <IconButton

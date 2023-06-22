@@ -149,7 +149,7 @@ const JsonSection: React.FC = () => {
     "space! 🚀",
     "playing video games"
   ],
-  "numOfTimesWatchedSuperbad": 38,
+  "numOfTimesWatchedSuperbad": 39,
 `}
           {`  "approxNumOfSandwichesEaten": ${Math.floor(getExactAge() * 365)}
 `}
