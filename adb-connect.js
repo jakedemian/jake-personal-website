@@ -14,6 +14,6 @@ exec(command, (err, stdout, stderr) => {
     return;
   }
 
-  console.log(`stdout: ${stdout}`);
+  console.info(`stdout: ${stdout}`);
   console.error(`stderr: ${stderr}`);
 });

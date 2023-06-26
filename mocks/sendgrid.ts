@@ -2,6 +2,6 @@
 module.exports = {
   setApiKey: () => {},
   send: async () => {
-    console.log('Mock Sendgrid: Email sent successfully');
+    console.info('Mock Sendgrid: Email sent successfully');
   },
 };
