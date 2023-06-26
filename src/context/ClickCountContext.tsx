@@ -1,6 +1,8 @@
 import React, { useState, createContext, useEffect } from 'react';
 import { useQuery } from 'react-query';
 
+const CLICK_COUNT_QUERY_KEY = 'CLICK_COUNT_QUERY_KEY';
+
 type ContextState = {
   clickCount: number | null;
   incrementClickCount: () => void;
@@ -29,7 +31,7 @@ export const ClickCountProvider: React.FC<{ children: React.ReactNode }> = ({
     return data.clickCount.value;
   };
 
-  useQuery('count', fetchCount, {
+  useQuery(CLICK_COUNT_QUERY_KEY, fetchCount, {
     refetchOnMount: false,
     refetchOnReconnect: false,
     refetchOnWindowFocus: false,
@@ -41,14 +43,17 @@ export const ClickCountProvider: React.FC<{ children: React.ReactNode }> = ({
     },
   });
 
-  const incrementClickCount = () => {
+  const incrementLocalClickCount = () => {
     if (clickCount === null) return;
     setClickCount(oldCount => (oldCount as number) + 1);
     setClicksSinceLastUpdate(old => old + 1);
   };
 
+  // TODO this "update if you havent clicked in the last 250ms" logic is
+  // confusing and unintuitive, I should probably refactor it
   let timerId: NodeJS.Timeout | null = null;
   useEffect(() => {
+    // TODO this should be a mutation?
     const updateCount = async (clicksToAdd: number) => {
       fetch('/api/updateCount', {
         method: 'POST',
@@ -78,7 +83,9 @@ export const ClickCountProvider: React.FC<{ children: React.ReactNode }> = ({
   }, [clicksSinceLastUpdate]);
 
   return (
-    <ClickCountContext.Provider value={{ clickCount, incrementClickCount }}>
+    <ClickCountContext.Provider
+      value={{ clickCount, incrementClickCount: incrementLocalClickCount }}
+    >
       {children}
     </ClickCountContext.Provider>
   );
