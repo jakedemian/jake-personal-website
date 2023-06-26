@@ -28,7 +28,7 @@ Chakra UI
 Redis
 ```
 
-## Using for yourself
+## Using for Yourself
 
 ### IMPORTANT: Read the [Terms of Use](#terms-of-use) as well as the [LICENSE](LICENSE.md) before cloning or forking this repo
 
@@ -36,19 +36,27 @@ To get a local copy up and running, follow these steps:
 
 ### Clone the repo
 
+`https`
+
+```bash
+git clone https://github.com/jakedemian/jake-personal-website
 ```
-git clone https://github.com/username/portfolio.git
+
+or `ssh`
+
+```bash
+git clone git@github.com:jakedemian/jake-personal-website.git
 ```
 
 ### Install packages
 
-```
+```bash
 yarn
 ```
 
 ### Start the server
 
-```
+```bash
 yarn start
 ```
 
