@@ -48,6 +48,7 @@ const Email: React.FC = () => {
   const { canSendEmail, handleSuccessfulEmailSend } = useCanSendEmail();
   const { colors } = useTheme();
   const { isDark } = useIsDark();
+  const [isTooltipOpen, setIsTooltipOpen] = useState<boolean>(false);
 
   const FormErrorMessage = ({ children }: { children: string }) => {
     return (
@@ -143,9 +144,17 @@ const Email: React.FC = () => {
           label="I promise I won't sell it 🙏 I just need to know who to reply to!"
           placement="top"
           fontSize="xs"
+          isOpen={isTooltipOpen}
         >
           <span>
-            <Icon as={FaQuestionCircle} cursor="pointer" mb={-1} />
+            <Icon
+              as={FaQuestionCircle}
+              cursor="pointer"
+              mb={-1}
+              onMouseEnter={() => setIsTooltipOpen(true)}
+              onMouseLeave={() => setIsTooltipOpen(false)}
+              onClick={() => setIsTooltipOpen(true)}
+            />
           </span>
         </Tooltip>
       </HStack>
