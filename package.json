@@ -47,7 +47,9 @@
     "start": "vercel dev",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "adb:tcpip": "adb disconnect && adb tcpip 5555",
+    "adb:connect": "node adb-connect.js"
   },
   "eslintConfig": {
     "extends": [
