@@ -12,7 +12,8 @@ import {
 import { GoMarkGithub, GoMail } from 'react-icons/go';
 import { FaYoutube, FaLinkedin, FaDownload, FaTwitter } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
-import { isMobile } from 'react-device-detect';
+
+import { useIsMobile } from 'src/hooks/useIsMobile';
 
 const snappyOneLiners = [
   'All rights ignored. Go ahead and steal it.',
@@ -32,6 +33,8 @@ const Footer = () => {
     () => snappyOneLiners[Math.floor(Math.random() * snappyOneLiners.length)],
     []
   );
+
+  const isMobile = useIsMobile();
 
   return (
     <Flex flexDir="column" flex={1} justifyContent="flex-end">

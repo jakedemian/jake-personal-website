@@ -1,7 +1,8 @@
 import React from 'react';
 import { Button, ButtonProps } from '@chakra-ui/button';
-import { isMobile } from 'react-device-detect';
 import { useColorMode } from '@chakra-ui/react';
+
+import { useIsMobile } from 'src/hooks/useIsMobile';
 
 type MenuButtonProps = React.PropsWithChildren<ButtonProps>;
 
@@ -14,6 +15,7 @@ const MenuButton: React.FC<MenuButtonProps & { isSelected?: boolean }> = ({
   const colorMode = colorModeData.colorMode;
   const desktopUnselectedHoverColor =
     colorMode === 'dark' ? 'gray.800' : 'gray.200';
+  const isMobile = useIsMobile();
 
   return (
     <Button

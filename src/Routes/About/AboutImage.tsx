@@ -2,10 +2,10 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Box, Text, useColorMode, Icon, VStack } from '@chakra-ui/react';
 import { FaHeart, FaBaby } from 'react-icons/fa';
 import { GiBabyBottle } from 'react-icons/gi';
-import { isMobile } from 'react-device-detect';
 import { motion, AnimatePresence } from 'framer-motion';
 
 import { ClickCountContext } from 'src/context/ClickCountContext';
+import { useIsMobile } from 'src/hooks/useIsMobile';
 
 const textOptions = [
   'Cute!',
@@ -26,6 +26,7 @@ const AboutImage: React.FC = () => {
   const colorMode = useColorMode();
   const isDark = colorMode.colorMode === 'dark';
   const { incrementClickCount } = useContext(ClickCountContext);
+  const isMobile = useIsMobile();
 
   const getRandomText = () => {
     return textOptions[Math.floor(Math.random() * textOptions.length)];
@@ -60,7 +61,6 @@ const AboutImage: React.FC = () => {
 
   useEffect(() => {
     if (isMobile && opacity > 0) {
-      console.log('here');
       setTimeout(() => {
         setOpacity(0);
       }, 300);

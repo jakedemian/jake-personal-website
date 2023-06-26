@@ -138,7 +138,7 @@ export const data: Category[] = [
         color: 'text',
       },
       '*Github Actions': {
-        value: 65,
+        value: 70,
         icon: Icons.SiGithubactions,
         color: 'text',
       },
@@ -163,7 +163,7 @@ export const data: Category[] = [
         color: '#2188b6',
       },
       '*Vercel': {
-        value: 40,
+        value: 55,
         icon: Icons.SiVercel,
         color: 'text',
       },

@@ -20,7 +20,6 @@
     "framer-motion": "^6",
     "polished": "^4.2.2",
     "react": "^18.2.0",
-    "react-device-detect": "^2.2.3",
     "react-dom": "^18.2.0",
     "react-icons": "^4.8.0",
     "react-query": "^3.39.3",
@@ -47,7 +46,9 @@
     "start": "vercel dev",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "adb:tcpip": "adb disconnect && adb tcpip 5555",
+    "adb:connect": "node adb-connect.js"
   },
   "eslintConfig": {
     "extends": [
