@@ -1,19 +1,22 @@
 import React, { useMemo } from 'react';
 import {
+  Button,
   Flex,
   HStack,
   Icon,
   IconButton,
+  Image,
   Link,
   Text,
   Tooltip,
   VStack,
 } from '@chakra-ui/react';
 import { GoMarkGithub, GoMail } from 'react-icons/go';
-import { FaYoutube, FaLinkedin, FaDownload, FaTwitter } from 'react-icons/fa';
+import { FaLinkedin, FaDownload, FaTwitter } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
 import { useIsMobile } from 'src/hooks/useIsMobile';
+import { useIsDark } from 'src/hooks/useIsDark';
 
 const snappyOneLiners = [
   'All rights ignored. Go ahead and steal it.',
@@ -35,6 +38,7 @@ const Footer = () => {
   );
 
   const isMobile = useIsMobile();
+  const { isDark } = useIsDark();
 
   return (
     <Flex flexDir="column" flex={1} justifyContent="flex-end">
@@ -75,7 +79,7 @@ const Footer = () => {
             icon={<Icon as={FaTwitter} />}
           />
         </Tooltip>
-        <Tooltip label="Youtube" placement="top" fontSize="xs">
+        {/* <Tooltip label="Youtube" placement="top" fontSize="xs">
           <IconButton
             aria-label="Jake Youtube"
             onClick={() =>
@@ -88,6 +92,22 @@ const Footer = () => {
             variant="ghost"
             icon={<Icon as={FaYoutube} />}
           />
+        </Tooltip> */}
+        <Tooltip label="Threads" placement="top" fontSize="xs">
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() =>
+              window.open('https://www.threads.net/@jakedemian', '_blank')
+            }
+          >
+            <Image
+              src="/img/threads-logo.png"
+              w={3}
+              alt="Threads logo"
+              filter={isDark ? 'brightness(9999%)' : 'brightness(0%)'}
+            />
+          </Button>
         </Tooltip>
         <Tooltip label="Email me" placement="top" fontSize="xs">
           <IconButton
@@ -103,7 +123,7 @@ const Footer = () => {
             onClick={() => navigate('/contact')}
             size="sm"
             variant="ghost"
-            icon={<Icon as={GoDeviceMobile} />}
+            icon={<Icon as={GoDeviceMobile} />} 
           />
         </Tooltip> */}
         </Tooltip>
