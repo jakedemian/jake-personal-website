@@ -16,8 +16,7 @@ import { useNavigate } from 'react-router-dom';
 import { useIsMobile } from 'src/hooks/useIsMobile';
 
 const snappyOneLiners = [
-  'All rights ignored. Go ahead and steal it.',
-  "If you're reading this: Why?",
+  'All rights ignored. Go ahead and steal my stuff.',
   "I wasn't harmed (much) in making this website.",
   'Passed (almost) every unit test.',
   '; DROP TABLE users;--',
@@ -25,6 +24,7 @@ const snappyOneLiners = [
   '0 days since last production disaster.',
   'git push --force',
   'LGTM 🚀',
+  "Let's make something awesome!",
 ];
 
 const Footer = () => {
