@@ -14,7 +14,6 @@ import { FaLinkedin, FaDownload, FaTwitter } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
 import { useIsMobile } from 'src/hooks/useIsMobile';
-import { useIsDark } from 'src/hooks/useIsDark';
 
 const snappyOneLiners = [
   'All rights ignored. Go ahead and steal it.',
