@@ -1,11 +1,9 @@
 import React, { useMemo } from 'react';
 import {
-  Button,
   Flex,
   HStack,
   Icon,
   IconButton,
-  Image,
   Link,
   Text,
   Tooltip,
@@ -16,11 +14,9 @@ import { FaLinkedin, FaDownload, FaTwitter } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
 import { useIsMobile } from 'src/hooks/useIsMobile';
-import { useIsDark } from 'src/hooks/useIsDark';
 
 const snappyOneLiners = [
-  'All rights ignored. Go ahead and steal it.',
-  "If you're reading this: Why?",
+  'All rights ignored. Go ahead and steal my stuff.',
   "I wasn't harmed (much) in making this website.",
   'Passed (almost) every unit test.',
   '; DROP TABLE users;--',
@@ -28,6 +24,7 @@ const snappyOneLiners = [
   '0 days since last production disaster.',
   'git push --force',
   'LGTM 🚀',
+  "Let's make something awesome!",
 ];
 
 const Footer = () => {
@@ -38,7 +35,6 @@ const Footer = () => {
   );
 
   const isMobile = useIsMobile();
-  const { isDark } = useIsDark();
 
   return (
     <Flex flexDir="column" flex={1} justifyContent="flex-end">
@@ -93,7 +89,7 @@ const Footer = () => {
             icon={<Icon as={FaYoutube} />}
           />
         </Tooltip> */}
-        <Tooltip label="Threads" placement="top" fontSize="xs">
+        {/* <Tooltip label="Threads" placement="top" fontSize="xs">
           <Button
             variant="ghost"
             size="sm"
@@ -108,7 +104,7 @@ const Footer = () => {
               filter={isDark ? 'brightness(9999%)' : 'brightness(0%)'}
             />
           </Button>
-        </Tooltip>
+        </Tooltip> */}
         <Tooltip label="Email me" placement="top" fontSize="xs">
           <IconButton
             aria-label="Email Jake"
