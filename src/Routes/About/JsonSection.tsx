@@ -5,12 +5,12 @@ import { desaturate } from 'polished';
 import { ClickCountContext } from 'src/context/ClickCountContext';
 import { useIsDark } from 'src/hooks/useIsDark';
 
-const BORN_DATE_TIME = new Date(1991, 11, 9, 0, 6, 0, 0);
+const BORN_DATE_TIME = new Date('1991-11-09T00:06:00');
 const getExactAge = () => {
   const nowDate = new Date();
-  return (
-    (nowDate.getTime() - BORN_DATE_TIME.getTime()) / 1000 / 60 / 60 / 24 / 365
-  );
+  const diffMilliseconds = nowDate.getTime() - BORN_DATE_TIME.getTime();
+
+  return diffMilliseconds / 1000 / 60 / 60 / 24 / 365;
 };
 
 const AgeDisplay: React.FC = () => {
