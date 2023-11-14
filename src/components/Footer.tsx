@@ -1,11 +1,9 @@
 import React, { useMemo } from 'react';
 import {
-  Button,
   Flex,
   HStack,
   Icon,
   IconButton,
-  Image,
   Link,
   Text,
   Tooltip,
@@ -38,7 +36,6 @@ const Footer = () => {
   );
 
   const isMobile = useIsMobile();
-  const { isDark } = useIsDark();
 
   return (
     <Flex flexDir="column" flex={1} justifyContent="flex-end">
