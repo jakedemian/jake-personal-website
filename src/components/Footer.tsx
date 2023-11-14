@@ -93,7 +93,7 @@ const Footer = () => {
             icon={<Icon as={FaYoutube} />}
           />
         </Tooltip> */}
-        <Tooltip label="Threads" placement="top" fontSize="xs">
+        {/* <Tooltip label="Threads" placement="top" fontSize="xs">
           <Button
             variant="ghost"
             size="sm"
@@ -108,7 +108,7 @@ const Footer = () => {
               filter={isDark ? 'brightness(9999%)' : 'brightness(0%)'}
             />
           </Button>
-        </Tooltip>
+        </Tooltip> */}
         <Tooltip label="Email me" placement="top" fontSize="xs">
           <IconButton
             aria-label="Email Jake"
