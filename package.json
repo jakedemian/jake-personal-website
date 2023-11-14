@@ -1,6 +1,6 @@
 {
   "name": "jake-personal-website",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@chakra-ui/anatomy": "^2.1.1",
