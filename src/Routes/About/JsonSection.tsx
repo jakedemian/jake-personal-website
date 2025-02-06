@@ -124,7 +124,7 @@ const JsonSection: React.FC = () => {
             {' $ '}
           </span>
           <span style={{ fontFamily: 'Source Code Pro' }}>
-            {'sudo ./info.sh --name=jake'}
+            {'sudo ./info.sh --name jake'}
           </span>
         </pre>
         <pre style={{ fontFamily: 'Source Code Pro' }}>
