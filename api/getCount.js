@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 /* eslint-disable @typescript-eslint/no-var-requires */
-import { NextResponse } from 'next/server';
+// import { NextResponse } from 'next/server';
 import { get } from '@vercel/edge-config';
 
 module.exports = async (req, res) => {
@@ -8,7 +8,7 @@ module.exports = async (req, res) => {
   // NextResponse.json requires at least Next v13.1 or
   // enabling experimental.allowMiddlewareResponseBody in next.config.js
   console.log(greeting);
-  return NextResponse.json(greeting);
+  return 1000;
 };
 
 // module.exports = async (req, res) => {
