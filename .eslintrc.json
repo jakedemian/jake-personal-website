@@ -45,5 +45,6 @@
         "alwaysTryTypes": true
       }
     }
-  }
+  },
+  "ignorePatterns": ["deno.js"]
 }
