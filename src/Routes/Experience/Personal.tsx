@@ -36,6 +36,18 @@ const Personal: React.FC = () => {
       />
       <PersonalCard
         {...{
+          projectName: 'Zero Index Studios',
+          logo: { path: '/img/zis_logo_light_text.png' },
+          linkHref: 'https://zeroindexstudios.com?o=personal',
+          linkAriaLabel: 'Link to Zero Index Studios homepage',
+          shortDescription:
+            'Zero Index Studios is a one-person freelancing web development business I do on the side.',
+
+          chips: ['React', 'Node.js', 'TypeScript', 'VS Code', 'Yarn', 'Git'],
+        }}
+      />
+      <PersonalCard
+        {...{
           projectName: 'Project Hierarchy Explorer',
           logo: { path: '/img/project-hierarchy-explorer-logo.png' },
           linkHref:
