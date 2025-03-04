@@ -37,7 +37,7 @@ type PersonalCardProps = {
   linkHref?: string;
   linkAriaLabel?: string;
   chips: NonEmptyArray<keyof typeof ChipIconMap>;
-  githubLink: string;
+  githubLink?: string;
 };
 
 const PersonalCard: React.FC<PersonalCardProps> = ({
@@ -122,17 +122,19 @@ const PersonalCard: React.FC<PersonalCardProps> = ({
               </Wrap>
               <VStack justifyContent="flex-end" alignItems="flex-end">
                 {/* TODO make this a new component? ExternalLink */}
-                <Button
-                  as={Link}
-                  href={githubLink}
-                  variant="link"
-                  color="primary.500"
-                  rightIcon={<ExternalLinkIcon />}
-                  target="_blank"
-                  mt={4}
-                >
-                  GitHub
-                </Button>
+                {githubLink && (
+                  <Button
+                    as={Link}
+                    href={githubLink}
+                    variant="link"
+                    color="primary.500"
+                    rightIcon={<ExternalLinkIcon />}
+                    target="_blank"
+                    mt={4}
+                  >
+                    GitHub
+                  </Button>
+                )}
               </VStack>
             </Grid>
           </VStack>
