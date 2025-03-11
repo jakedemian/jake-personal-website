@@ -1,23 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-undef */
 /* eslint-disable @typescript-eslint/no-var-requires */
-import { NextResponse } from 'next/server';
-import { get } from '@vercel/edge-config';
+const edgedb = require('edgedb');
 
 module.exports = async (req, res) => {
-  const greeting = await get('clickCount');
-  // NextResponse.json requires at least Next v13.1 or
-  // enabling experimental.allowMiddlewareResponseBody in next.config.js
-  console.log(greeting);
-  return NextResponse.json(greeting);
+  const client = edgedb.createClient();
+  console.log('🏀', client);
+
+  const result = await client.query(`select 2 + 2;`);
+  console.log(result); // [4]
+  return res.status(200).json({ clickCount: { value: 0 } });
 };
-
-// module.exports = async (req, res) => {
-//   const clicks = createClient({
-//     url: process.env.KV_REST_API_URL,
-//     token: process.env.KV_REST_API_TOKEN,
-//   });
-
-//   const clickCount = await clicks.hgetall('clickCount');
-//   return res.status(200).json({ clickCount });
-// };
