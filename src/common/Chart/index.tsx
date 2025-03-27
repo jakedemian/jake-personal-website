@@ -1,6 +1,5 @@
 import React from 'react';
 import { Grid, HStack, Text, VStack } from '@chakra-ui/react';
-import { IconType } from 'react-icons';
 
 import ChartRow from 'src/common/Chart/ChartRow';
 import ChartAxisLabels from 'src/common/Chart/ChartAxisLabels';
@@ -44,8 +43,10 @@ const Chart: React.FC = () => {
                 {Object.keys(group.items)
                   .sort((a, b) => group.items[b].value - group.items[a].value)
                   .map((item, itemIndex) => {
-                    const IconComponent = group.items[item]
-                      .icon as unknown as React.ComponentType<any>;
+                    const IconComponent =
+                      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                      group.items[item]
+                        .icon as unknown as React.ComponentType<any>;
                     const lightStyles =
                       isLight && COLORED_ICONS_ENABLED
                         ? {
