@@ -59,15 +59,20 @@ export const data: Category[] = [
         color: '#61DBFB',
         lightColor: '#4c768d',
       },
-      Expo: {
-        value: 65,
-        icon: Icons.SiExpo,
-        color: 'text',
+      'Next.js': {
+        value: 90,
+        icon: Icons.SiNextdotjs,
+        color: '#000',
+      },
+      Vue: {
+        value: 90,
+        icon: Icons.SiVuedotjs,
+        color: '#41b883',
       },
     },
   },
   {
-    category: 'Server-Side',
+    category: 'Data & Server-Side',
     items: {
       'Node.js': {
         value: 100,
@@ -170,6 +175,11 @@ export const data: Category[] = [
         value: 100,
         icon: VscVscode,
         color: '#0078d7',
+      },
+      'JetBrains IDEs': {
+        value: 100,
+        icon: Icons.SiJetbrains,
+        color: '#000',
       },
       Bash: {
         value: 100,

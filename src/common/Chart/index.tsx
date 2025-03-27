@@ -86,11 +86,6 @@ const Chart: React.FC = () => {
           <ChartAxisLines />
           <ChartAxisLabels />
         </VStack>
-        <HStack justifyContent="flex-start" width="80%">
-          <Text mt={8} fontSize={12}>
-            * Actively learning this
-          </Text>
-        </HStack>
       </VStack>
     </HStack>
   );
