@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
-import { Grid, HStack, Text, VStack } from '@chakra-ui/react';
+import { Grid, HStack, VStack } from '@chakra-ui/react';
 
 import ChartRow from 'src/common/Chart/ChartRow';
 import ChartAxisLabels from 'src/common/Chart/ChartAxisLabels';
