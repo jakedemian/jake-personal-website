@@ -1,5 +1,6 @@
 import React from 'react';
 import { Grid, HStack, Text, VStack } from '@chakra-ui/react';
+import { IconType } from 'react-icons';
 
 import ChartRow from 'src/common/Chart/ChartRow';
 import ChartAxisLabels from 'src/common/Chart/ChartAxisLabels';
@@ -43,7 +44,8 @@ const Chart: React.FC = () => {
                 {Object.keys(group.items)
                   .sort((a, b) => group.items[b].value - group.items[a].value)
                   .map((item, itemIndex) => {
-                    const Icon = group.items[item].icon;
+                    const IconComponent = group.items[item]
+                      .icon as unknown as React.ComponentType<any>;
                     const lightStyles =
                       isLight && COLORED_ICONS_ENABLED
                         ? {
@@ -60,15 +62,17 @@ const Chart: React.FC = () => {
                         animationDelay={calculateDelay(groupIndex, itemIndex)}
                         data-testid="chart-row"
                         icon={
-                          <Icon
-                            size={14}
-                            color={
-                              COLORED_ICONS_ENABLED
-                                ? group.items[item].color
-                                : 'text'
-                            }
-                            style={{ minWidth: '14px', ...lightStyles }}
-                          />
+                          <div style={{ minWidth: '14px' }}>
+                            <IconComponent
+                              size={14}
+                              color={
+                                COLORED_ICONS_ENABLED
+                                  ? group.items[item].color
+                                  : 'text'
+                              }
+                              style={lightStyles}
+                            />
+                          </div>
                         }
                       />
                     );

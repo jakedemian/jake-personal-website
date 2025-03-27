@@ -6,13 +6,14 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 import { ClickCountContext } from 'src/context/ClickCountContext';
 import { useIsMobile } from 'src/hooks/useIsMobile';
+import { IconAs } from 'src/common/types/icon';
 
 const textOptions = [
   'Cute!',
   '<3',
-  <FaBaby key={'fa-baby'} />,
+  <Icon key={'fa-baby'} as={FaBaby as IconAs} />,
   'Baby',
-  <GiBabyBottle key="gi-baby-bottle" />,
+  <Icon key="gi-baby-bottle" as={GiBabyBottle as IconAs} />,
   'Aww!',
   ':)',
 ];
@@ -160,7 +161,7 @@ const AboutImage: React.FC = () => {
             }}
           >
             <Icon
-              as={FaHeart}
+              as={FaHeart as IconAs}
               w={16}
               h={16}
               color={isDark ? 'white' : 'primary.300'}

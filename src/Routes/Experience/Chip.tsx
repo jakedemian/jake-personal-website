@@ -1,9 +1,10 @@
 import React from 'react';
-import { HStack, Text } from '@chakra-ui/react';
+import { HStack, Text, Icon } from '@chakra-ui/react';
 import { IconType } from 'react-icons';
 
 import { useIsDark } from 'src/hooks/useIsDark';
 import { ChipIconMap } from 'src/Routes/Experience/ChipIconMap';
+import { IconAs } from 'src/common/types/icon';
 
 type ChipProps = {
   name: string;
@@ -11,7 +12,7 @@ type ChipProps = {
 };
 
 export const Chip: React.FC<ChipProps> = ({ name, size = 14 }) => {
-  const Icon: IconType = ChipIconMap[name as keyof typeof ChipIconMap];
+  const IconComponent: IconType = ChipIconMap[name as keyof typeof ChipIconMap];
   const { isDark } = useIsDark();
 
   return (
@@ -23,7 +24,7 @@ export const Chip: React.FC<ChipProps> = ({ name, size = 14 }) => {
       borderRadius={999}
       alignItems="center"
     >
-      <Icon size={size} />
+      <Icon as={IconComponent as IconAs} size={size} />
       <Text fontSize={size}>{name}</Text>
     </HStack>
   );

@@ -9,11 +9,12 @@ import {
   Tooltip,
   VStack,
 } from '@chakra-ui/react';
-import { GoMarkGithub, GoMail } from 'react-icons/go';
-import { FaLinkedin, FaDownload, FaTwitter } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaDownload, FaTwitter } from 'react-icons/fa';
+import { GoMail } from 'react-icons/go';
 import { useNavigate } from 'react-router-dom';
 
 import { useIsMobile } from 'src/hooks/useIsMobile';
+import { IconAs } from 'src/common/types/icon';
 
 const snappyOneLiners = [
   'All rights ignored. Go ahead and steal my stuff.',
@@ -47,7 +48,7 @@ const Footer = () => {
             }
             size="sm"
             variant="ghost"
-            icon={<Icon as={GoMarkGithub} />}
+            icon={<Icon as={FaGithub as IconAs} />}
           />
         </Tooltip>
         <Tooltip label="LinkedIn" placement="top" fontSize="xs">
@@ -61,7 +62,7 @@ const Footer = () => {
             }
             size="sm"
             variant="ghost"
-            icon={<Icon as={FaLinkedin} />}
+            icon={<Icon as={FaLinkedin as IconAs} />}
           />
         </Tooltip>
         <Tooltip label="Twitter" placement="top" fontSize="xs">
@@ -72,7 +73,7 @@ const Footer = () => {
             }
             size="sm"
             variant="ghost"
-            icon={<Icon as={FaTwitter} />}
+            icon={<Icon as={FaTwitter as IconAs} />}
           />
         </Tooltip>
         {/* <Tooltip label="Youtube" placement="top" fontSize="xs">
@@ -111,7 +112,7 @@ const Footer = () => {
             onClick={() => navigate('/contact')}
             size="sm"
             variant="ghost"
-            icon={<Icon as={GoMail} />}
+            icon={<Icon as={GoMail as IconAs} />}
           />
           {/* <Tooltip label="Text me" placement="top" fontSize="xs">
           <IconButton
@@ -128,7 +129,7 @@ const Footer = () => {
         <VStack pt={{ base: 1, lg: 16 }} mb={4}>
           <Link href="/jake-demian-resume.pdf" target="_blank" variant="ghost">
             <HStack>
-              <Icon as={FaDownload} />
+              <Icon as={FaDownload as IconAs} />
               <Text fontSize={11}>Download Resume</Text>
             </HStack>
           </Link>
