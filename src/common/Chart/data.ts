@@ -1,7 +1,7 @@
 import { IconType } from 'react-icons';
 import * as Icons from 'react-icons/si';
-import { FaAws } from 'react-icons/fa';
-
+import { FaAws, FaTerminal, FaWindows } from 'react-icons/fa';
+import { VscVscode } from 'react-icons/vsc';
 type CategoryItem = {
   value: number;
   icon: IconType;
@@ -59,73 +59,107 @@ export const data: Category[] = [
         color: '#61DBFB',
         lightColor: '#4c768d',
       },
-      Expo: {
-        value: 65,
-        icon: Icons.SiExpo,
-        color: 'text',
+      'Next.js': {
+        value: 90,
+        icon: Icons.SiNextdotjs,
+        color: '#000',
       },
-      '*NestJS': {
-        value: 50,
-        icon: Icons.SiNestjs,
-        color: '#E0234E',
+      Vue: {
+        value: 90,
+        icon: Icons.SiVuedotjs,
+        color: '#41b883',
       },
     },
   },
   {
-    category: 'Data',
+    category: 'Data & Server-Side',
     items: {
+      'Node.js': {
+        value: 100,
+        icon: Icons.SiNodedotjs,
+        color: '#339933',
+      },
       PostgreSQL: {
         value: 90,
         icon: Icons.SiPostgresql,
         color: '#336791',
         lightColor: '#0064a5',
       },
-      Prisma: {
-        value: 80,
-        icon: Icons.SiPrisma,
-        color: 'text',
-      },
       Redis: {
-        value: 70,
+        value: 85,
         icon: Icons.SiRedis,
         color: '#D82C20',
       },
-      '*GraphQL': {
-        value: 40,
+      GraphQL: {
+        value: 80,
         icon: Icons.SiGraphql,
         color: '#E10098',
       },
     },
   },
   {
-    category: 'Cloud',
+    category: 'Cloud & DevOps',
     items: {
+      Docker: {
+        value: 100,
+        icon: Icons.SiDocker,
+        color: '#0db7ed',
+      },
+      Vercel: {
+        value: 90,
+        icon: Icons.SiVercel,
+        color: 'text',
+      },
+      'Github Actions': {
+        value: 90,
+        icon: Icons.SiGithubactions,
+        color: 'text',
+      },
       AWS: {
         value: 80,
         icon: FaAws,
         color: '#FF9900',
         lightColor: '#252F3E',
       },
-      '*GCP': {
-        value: 70,
-        icon: Icons.SiGooglecloud,
-        color: '#0F9D58',
+    },
+  },
+  {
+    category: 'OS',
+    items: {
+      Linux: {
+        value: 100,
+        icon: Icons.SiLinux,
+        color: '#000',
       },
-      Azure: {
-        value: 50,
-        icon: Icons.SiMicrosoftazure,
-        color: '#008AD7',
+      Windows: {
+        value: 100,
+        icon: FaWindows,
+        color: '#0078d7',
       },
-      '*Firebase': {
-        value: 80,
-        icon: Icons.SiFirebase,
-        color: '#FFCA28',
-        lightColor: '#FFA000',
+      MacOS: {
+        value: 100,
+        icon: Icons.SiApple,
+        color: '#000',
       },
     },
   },
   {
-    category: 'Other',
+    category: 'AI',
+    items: {
+      'OpenAI / ChatGPT': {
+        value: 100,
+        icon: Icons.SiOpenai,
+        color: '#000',
+      },
+      'Claude / Sonnet': {
+        value: 100,
+        icon: Icons.SiAnthropic,
+        color: '#000',
+      },
+    },
+  },
+  {
+    category: 'General Tooling',
     items: {
       Git: {
         value: 100,
@@ -137,35 +171,20 @@ export const data: Category[] = [
         icon: Icons.SiGithub,
         color: 'text',
       },
-      '*Github Actions': {
-        value: 70,
-        icon: Icons.SiGithubactions,
-        color: 'text',
-      },
       'VS Code': {
         value: 100,
-        icon: Icons.SiVisualstudiocode,
+        icon: VscVscode,
         color: '#0078d7',
       },
-      Docker: {
-        value: 60,
-        icon: Icons.SiDocker,
-        color: '#0db7ed',
+      'JetBrains IDEs': {
+        value: 100,
+        icon: Icons.SiJetbrains,
+        color: '#000',
       },
-      'Node.js': {
-        value: 95,
-        icon: Icons.SiNodedotjs,
-        color: '#339933',
-      },
-      Yarn: {
-        value: 95,
-        icon: Icons.SiYarn,
-        color: '#2188b6',
-      },
-      '*Vercel': {
-        value: 55,
-        icon: Icons.SiVercel,
-        color: 'text',
+      Bash: {
+        value: 100,
+        icon: FaTerminal,
+        color: '#f14e32',
       },
     },
   },

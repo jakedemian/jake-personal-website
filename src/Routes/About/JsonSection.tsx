@@ -1,8 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, HStack, useTheme } from '@chakra-ui/react';
 import { desaturate } from 'polished';
 
-import { ClickCountContext } from 'src/context/ClickCountContext';
 import { useIsDark } from 'src/hooks/useIsDark';
 
 const BORN_DATE_TIME = new Date('1991-11-09T00:06:00');
@@ -43,7 +42,6 @@ const FlashingCursor: React.FC = () => {
 
 const JsonSection: React.FC = () => {
   const { colors } = useTheme();
-  const { clickCount } = useContext(ClickCountContext);
   const { isDark } = useIsDark();
 
   return (
@@ -74,7 +72,7 @@ const JsonSection: React.FC = () => {
           bg="red.500"
           borderRadius={'50%'}
           borderWidth={1}
-          borderColor="gray.500"
+          borderColor="gray.900"
           borderStyle="solid"
         />
         <Box
@@ -83,7 +81,7 @@ const JsonSection: React.FC = () => {
           bg="yellow.400"
           borderRadius={'50%'}
           borderWidth={1}
-          borderColor="gray.500"
+          borderColor="gray.900"
           borderStyle="solid"
         />
         <Box
@@ -92,7 +90,7 @@ const JsonSection: React.FC = () => {
           bg="green.300"
           borderRadius={'50%'}
           borderWidth={1}
-          borderColor="gray.500"
+          borderColor="gray.900"
           borderStyle="solid"
         />
       </HStack>
@@ -142,12 +140,12 @@ const JsonSection: React.FC = () => {
       "randy"
     ]
   },
-  "clickCount": ${clickCount === null ? 'Loading...' : clickCount},
   "otherInterests": [
+    "coding",
     "game design",
     "running",
     "space! 🚀",
-    "playing video games"
+    "pc games"
   ],
   "numOfTimesWatchedSuperbad": 39,
 `}

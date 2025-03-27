@@ -21,6 +21,7 @@ import TypedText from 'src/Menu/TypedText';
 import { ROUTES } from 'src/common/Routes';
 import Footer from 'src/components/Footer';
 import { useIsMobile } from 'src/hooks/useIsMobile';
+import { IconAs } from 'src/common/types/icon';
 
 const AppLayout: React.FC = () => {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -90,7 +91,7 @@ const AppLayout: React.FC = () => {
                   variant="ghost"
                 >
                   <HStack>
-                    <Icon as={FaDownload} />
+                    <Icon as={FaDownload as IconAs} />
                     <Text fontSize={11}>Download Resume</Text>
                   </HStack>
                 </Link>

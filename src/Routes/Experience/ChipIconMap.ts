@@ -1,4 +1,5 @@
 import * as Icons from 'react-icons/si';
+import { VscVscode } from 'react-icons/vsc';
 
 export const ChipIconMap = {
   React: Icons.SiReact,
@@ -18,9 +19,9 @@ export const ChipIconMap = {
   Aseprite: Icons.SiAseprite,
   npm: Icons.SiNpm,
   JavaScript: Icons.SiJavascript,
-  'C#': Icons.SiCsharp,
+  'C#': Icons.SiSharp,
   HTML5: Icons.SiHtml5,
   CSS3: Icons.SiCss3,
   Redis: Icons.SiRedis,
-  'VS Code': Icons.SiVisualstudiocode,
+  'VS Code': VscVscode,
 };

@@ -1,10 +1,11 @@
 import React from 'react';
-import { Box, VStack } from '@chakra-ui/react';
+import { Box, VStack, Icon } from '@chakra-ui/react';
 import { GiBigDiamondRing } from 'react-icons/gi';
 import { FaRegCircle } from 'react-icons/fa';
 
 import PersonalCard from 'src/Routes/Experience/PersonalCard';
 import TypedText from 'src/Menu/TypedText';
+import { IconAs } from 'src/common/types/icon';
 
 const Personal: React.FC = () => {
   return (
@@ -108,10 +109,10 @@ const Personal: React.FC = () => {
             component: (
               <Box>
                 <Box display="inline-block">
-                  <GiBigDiamondRing size={48} />
+                  <Icon as={GiBigDiamondRing as IconAs} w={'48px'} h={'48px'} />
                 </Box>
-                <Box display="inline-block" mb={0.5} ml={-5}>
-                  <FaRegCircle size={38} />
+                <Box display="inline-block" ml={-5}>
+                  <Icon as={FaRegCircle as IconAs} w={'38px'} h={'38px'} />
                 </Box>
               </Box>
             ),

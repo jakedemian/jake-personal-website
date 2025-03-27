@@ -19,6 +19,7 @@ import { useMutation } from 'react-query';
 
 import { useCanSendEmail } from 'src/hooks/useCanSendEmail';
 import { useIsDark } from 'src/hooks/useIsDark';
+import { IconAs } from 'src/common/types/icon';
 
 type FormState = {
   email: string;
@@ -131,7 +132,7 @@ const Email: React.FC = () => {
         <Text fontSize={20}>
           Thanks for reaching out, I&apos;ll get back to you soon!
         </Text>
-        <FaCheck size={70} color={colors.green[500]} />
+        <Icon as={FaCheck as IconAs} w={70} h={70} color={colors.green[500]} />
       </VStack>
     );
   }
@@ -148,7 +149,7 @@ const Email: React.FC = () => {
         >
           <span>
             <Icon
-              as={FaQuestionCircle}
+              as={FaQuestionCircle as IconAs}
               cursor="pointer"
               mb={-1}
               onMouseEnter={() => setIsTooltipOpen(true)}
@@ -208,12 +209,12 @@ const Email: React.FC = () => {
           {mutation.isLoading ? (
             <>
               <Icon
-                as={ImSpinner9}
+                as={ImSpinner9 as IconAs}
                 animation={`${spin} 0.75s linear infinite`}
               />
             </>
           ) : (
-            <Icon as={HiOutlineMail} />
+            <Icon as={HiOutlineMail as IconAs} />
           )}
         </HStack>
       </Button>
